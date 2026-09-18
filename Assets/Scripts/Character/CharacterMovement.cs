@@ -60,12 +60,6 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
     }
-
-    public float GetVerticalVelocity()
-    {
-        return rb2d.linearVelocityY;
-    }
-
     public bool GetIsGrounded()
     {
         return isGrounded;

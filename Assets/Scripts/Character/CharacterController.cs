@@ -16,13 +16,6 @@ public class CharacterController : MonoBehaviour
         characterAnimation = GetComponent<CharacterAnimation>();
     }
 
-    private void Update()
-    {
-        if (characterAnimation == null)
-            return;
-        characterAnimation.SetVerticalVelocity(characterMovement.GetVerticalVelocity());
-    }
-
     public void EnableController()
     {
         enableControll = true;
@@ -44,7 +37,7 @@ public class CharacterController : MonoBehaviour
     {
         if (Time.timeScale == 0f || !enableControll) return;
         characterMovement.HandleMovement(direction.x);
-        characterAnimation.SetMovement(direction);
+        //characterAnimation.SetMovement(direction);
     }
 
     public void TryJump()
@@ -52,7 +45,7 @@ public class CharacterController : MonoBehaviour
         if (Time.timeScale == 0f || !enableControll) return;
         if (characterMovement.HandleJump())
         {
-            characterAnimation.PlayJump();
+            //characterAnimation.PlayJump();
         }
     }
 
@@ -62,14 +55,15 @@ public class CharacterController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Die()
+    private void OnEnable()
     {
-        DisableController();
-        characterAnimation.PlayDeath();
+        InputEvents.Move += Move;
+        InputEvents.Jump += TryJump;
     }
 
-    public void TakeHit()
+    private void OnDisable()
     {
-        characterAnimation.PlayHit();
+        InputEvents.Move -= Move;
+        InputEvents.Jump -= TryJump;
     }
 }
