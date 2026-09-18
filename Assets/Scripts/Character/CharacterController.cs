@@ -16,17 +16,6 @@ public class CharacterController : MonoBehaviour
         characterAnimation = GetComponent<CharacterAnimation>();
     }
 
-    private void OnEnable()
-    {
-        TargetManager.RegisterTarget(gameObject);
-    }
-
-    private void OnDisable()
-    {
-        TargetManager.UnregisterTarget(gameObject);      
-    }
-
-
     private void Update()
     {
         if (characterAnimation == null)
@@ -65,12 +54,6 @@ public class CharacterController : MonoBehaviour
         {
             characterAnimation.PlayJump();
         }
-    }
-
-    public void Attack()
-    {
-        if (Time.timeScale == 0f || !enableControll) return;
-        characterAnimation.PlayAttack();
     }
 
     private IEnumerator HoldAndDestroy(float waitingTime)
