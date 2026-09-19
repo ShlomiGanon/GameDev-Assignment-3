@@ -345,8 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4d33fd92d1aa84fbab0051c84f1579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
-  moveSpeed: 10
-  jumpForce: 7
+  data: {fileID: 11400000, guid: 2986b98ced655fc4db89e0a94df3ec28, type: 2}
 --- !u!1 &939235808
 GameObject:
   m_ObjectHideFlags: 0
