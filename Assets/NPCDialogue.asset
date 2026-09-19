@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
   m_Name: NPCDialogue
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
-  npcName: 
+  npcName: Little Square
   npcPortrait: {fileID: 0}
-  dialogueLines: []
-  autoProgressLines: 
+  dialogueLines:
+  - Hello there Circle boy!
+  - I may need your help to solve things...
+  autoProgressLines: 0100
   autoProgressDelay: 1.5
   typingSpeed: 0.05
