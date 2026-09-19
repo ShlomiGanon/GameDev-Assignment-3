@@ -4,12 +4,12 @@ using UnityEngine;
 public class CharacterHealth : MonoBehaviour
 {
 
-    [SerializeField] int fullHealth = 0;
+    [SerializeField] CharacterSO data;
     [SerializeField] private int currentHealth;//[SerializeField] it is for DEBUG
 
     private void Awake()
     {
-        currentHealth = fullHealth;
+        currentHealth = data.FullHealth;
     }
 
     public int GetHealth()
@@ -19,7 +19,7 @@ public class CharacterHealth : MonoBehaviour
 
     public int GetFullHealth()
     {
-        return fullHealth;
+        return data.FullHealth;
     }
 
     public bool IsAlive()
