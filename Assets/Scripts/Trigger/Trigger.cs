@@ -37,6 +37,7 @@ public class Trigger : MonoBehaviour
         {
             if(triggerEnterEvent != null)triggerEnterEvent.Invoke();
             isTrigger = true;
+            GameEvents.ButtonChangeStatus?.Invoke(this.gameObject, true);
         }
     }
 
@@ -46,6 +47,7 @@ public class Trigger : MonoBehaviour
         {
             if (triggerExitEvent != null) triggerExitEvent.Invoke();
             isTrigger = false;
+            GameEvents.ButtonChangeStatus?.Invoke(this.gameObject, false);
         }
     }
 }
