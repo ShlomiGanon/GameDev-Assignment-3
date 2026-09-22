@@ -24,6 +24,7 @@ public class NPC : MonoBehaviour
 
     private IEnumerator PlayDialogue()
     {
+        GameEvents.OnDialogueStart();
         isTalking = true;
 
         dialoguePanel.SetActive(true);
@@ -50,5 +51,6 @@ public class NPC : MonoBehaviour
         dialoguePanel.SetActive(false);
 
         isTalking = false;
+        GameEvents.OnDialogueEnd();
     }
 }

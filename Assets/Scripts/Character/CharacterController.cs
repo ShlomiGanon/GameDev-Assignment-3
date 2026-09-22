@@ -15,7 +15,7 @@ public class CharacterController : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         characterAnimation = GetComponent<CharacterAnimation>();
     }
-
+    
     public void EnableController()
     {
         enableControll = true;
@@ -59,6 +59,8 @@ public class CharacterController : MonoBehaviour
     {
         InputEvents.Move += Move;
         InputEvents.Jump += TryJump;
+        GameEvents.DialogueEnd += EnableController;
+        GameEvents.DialogueStart += DisableController; 
     }
 
     private void OnDisable()
