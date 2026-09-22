@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff777303ec05f0c4e820e34b234eaddb, type: 3}
   m_Name: PlayerSO
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSO
+  characterName: Name
   moveSpeed: 10
-  jumpForce: 8
+  jumpForce: 4
   fullHealth: 1

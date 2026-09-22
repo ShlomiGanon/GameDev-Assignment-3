@@ -15,7 +15,22 @@ MonoBehaviour:
   npcName: Little Square
   npcPortrait: {fileID: 9133988509631934656, guid: 3fb775950fe57c5498a9cef5c71902c5, type: 3}
   dialogueLines:
-  - Hello there Circle boy!
-  - I may need your help to solve things...
+  - 'Hey, traveler! I need your help.
+
+    There is a strange puzzle blocking our
+    way.
+
+    Solve it, and we can pass safely.
+
+    Listen carefully...'
+  - 'Three brothers stand before you: White, Black, and Gray.
+
+    Two were here
+    from the very first day.
+
+    The third was born when the other two became one.
+
+    Only
+    the true two may awaken the buttons.'
   typingSpeed: 0.05
-  messageDelay: 2
+  messageDelay: 5
