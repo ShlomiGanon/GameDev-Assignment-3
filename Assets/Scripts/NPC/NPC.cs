@@ -1,90 +1,54 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System.Collections;
-public class NPC : MonoBehaviour, IInteractable
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class NPC : MonoBehaviour
 {
-    [SerializeField] NPCDialogue dialogueData;
-    public GameObject dialoguePanel;
-    public TMP_Text dialogueText, nameText;
-    public Image portraitImage;
+    [SerializeField] private NPCDialogue dialogueData;
 
-    private int dialogueIndex;
-    private bool isTyping, isDialogueActive;
+    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private Image portraitImage;
 
-    public void Interact()
+    private bool isTalking;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (dialogueData == null || (/*PauseController.IsPaused && */ !isDialogueActive)) //we dont want when the dialogue keep going to show up on pause menu screen
-            return;
-        if(isDialogueActive)
+        if (other.CompareTag("Player") && !isTalking)
         {
-            NextLine();
-        }
-        else
-        {
-            StartDialogue();
+            StartCoroutine(PlayDialogue());
         }
     }
-    void StartDialogue()
+
+    private IEnumerator PlayDialogue()
     {
-        isDialogueActive = true;
-        dialogueIndex = 0;
-        nameText.SetText(dialogueData.npcName);
-        portraitImage.sprite = dialogueData.npcPortrait;
+        isTalking = true;
+
         dialoguePanel.SetActive(true);
-        //PauseController.SetPause(true);
-
-        StartCoroutine(TypeLine());
-        
-    }
-    void NextLine()
-    {
-        if(isTyping)
+        nameText.SetText(dialogueData.NpcName);
+        if (portraitImage != null)
         {
-            StopAllCoroutines();
-            dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
-            isTyping = false;
-        }
-        else if(++dialogueIndex < dialogueData.dialogueLines.Length)
-        {
-            StartCoroutine(TypeLine());
-        }
-        else
-        {
-            EndDialogue();
-        }
-    }
-
-    IEnumerator TypeLine()
-    {
-        isTyping = true;
-        dialogueText.SetText("");
-
-        foreach (char letter in dialogueData.dialogueLines[dialogueIndex])
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(dialogueData.typingSpeed);
+            portraitImage.sprite = dialogueData.NpcPortrait;
         }
 
-        isTyping = false;
-
-        if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
+        foreach (string message in dialogueData.DialogueLines)
         {
-            yield return new WaitForSeconds(dialogueData.autoProgressDelay);
-            NextLine();
+            dialogueText.SetText("");
+
+            foreach (char letter in message)
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(dialogueData.TypingSpeed);
+            }
+
+            yield return new WaitForSeconds(dialogueData.MessageDelay);
         }
 
-    }
-    public void EndDialogue()
-    {
-        StopAllCoroutines();
-        isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
-        //pausecontroller set false
-    }
-    public bool CanInteract()
-    {
-        return !isDialogueActive;
+
+        isTalking = false;
     }
 }
