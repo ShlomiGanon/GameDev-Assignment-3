@@ -10,7 +10,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Image portraitImage;
+    [SerializeField] private Image canvasPortraitImage;
 
     private bool isTalking;
 
@@ -28,9 +28,9 @@ public class NPC : MonoBehaviour
 
         dialoguePanel.SetActive(true);
         nameText.SetText(dialogueData.NpcName);
-        if (portraitImage != null)
+        if (canvasPortraitImage != null)
         {
-            portraitImage.sprite = dialogueData.NpcPortrait;
+            canvasPortraitImage.sprite = dialogueData.NpcPortrait;
         }
 
         foreach (string message in dialogueData.DialogueLines)

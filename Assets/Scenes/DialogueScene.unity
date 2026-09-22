@@ -303,7 +303,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1989406417}
   dialogueText: {fileID: 469319268}
   nameText: {fileID: 1608018049}
-  portraitImage: {fileID: 0}
+  canvasPortraitImage: {fileID: 669997121}
 --- !u!61 &43266965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 9133988509631934656, guid: 3fb775950fe57c5498a9cef5c71902c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
