@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class PuzzleManager : MonoBehaviour
 {
     private Dictionary<GameObject,bool> isButtonPress = new();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
