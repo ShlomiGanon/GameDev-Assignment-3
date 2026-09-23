@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
+  m_Name: NPCDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: Little Square
+  npcPortrait: {fileID: 9133988509631934656, guid: 3fb775950fe57c5498a9cef5c71902c5, type: 3}
+  dialogueLines:
+  - 'Hey, traveler! I need your help.
+
+    There is a strange puzzle blocking our
+    way.
+
+    Solve it, and we can pass safely.
+
+    Listen carefully...'
+  - 'Three brothers stand before you: White, Black, and Gray.
+
+    Two were here
+    from the very first day.
+
+    The third was born when the other two became one.
+
+    Only
+    the true two may awaken the buttons.'
+  typingSpeed: 0.05
+  messageDelay: 5
