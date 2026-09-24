@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
@@ -18,6 +19,36 @@ public class CharacterAnimation : MonoBehaviour
         {
             Debug.LogError("the GameObject dont have Sprite Renderer , thats wired!");
         }
+    }
+
+    public void SetMovement(float speed)
+    {
+        animator.SetFloat("Speed", Mathf.Abs(speed));
+    }
+
+    public void SetJump()
+    {
+        animator.SetTrigger("Jump");
+    }
+
+    public void SetGrounded(bool isGrounded)
+    {
+        animator.SetBool("IsGrounded", isGrounded);
+    }
+
+    public void SetVerticalVelocity(float velocity)
+    {
+        animator.SetFloat("VerticalVelocity", velocity);
+    }
+
+    public void SetPushing(bool isPushing)
+    {
+        animator.SetBool("IsPush", isPushing);
+    }
+
+    public void SetWin(bool isWin)
+    {
+        animator.SetTrigger("Win");
     }
 
     public void FlipSprite(float directionX)

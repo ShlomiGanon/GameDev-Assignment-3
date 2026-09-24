@@ -13,7 +13,22 @@ public class CharacterController : MonoBehaviour
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        if(characterMovement == null)
+        {
+            Debug.LogError("The GameObject dosn't have characterMovement");
+        }
         characterAnimation = GetComponent<CharacterAnimation>();
+        if(characterAnimation == null)
+        {
+            Debug.LogError("The GameObject dosn't have characterAnimation");
+        }
+    }
+    private void Update()
+    {
+        characterAnimation.SetMovement(characterMovement.GetHorizontalVelocity());
+        characterAnimation.SetVerticalVelocity(characterMovement.GetVerticalVelocity());
+        characterAnimation.SetGrounded(characterMovement.GetIsGrounded());
+        characterAnimation.SetPushing(characterMovement.GetIsPushing());
     }
 
     public void EnableController()
@@ -27,7 +42,7 @@ public class CharacterController : MonoBehaviour
         characterMovement.HandleMovement(0f);
     }
 
-    public void SetFacing(float directionX)
+    public void SetFacing(float directionX)//check later if neccecary
     {
         if (Time.timeScale == 0f || !enableControll) return;
         characterAnimation.FlipSprite(directionX);
@@ -37,7 +52,7 @@ public class CharacterController : MonoBehaviour
     {
         if (Time.timeScale == 0f || !enableControll) return;
         characterMovement.HandleMovement(direction.x);
-        //characterAnimation.SetMovement(direction);
+        characterAnimation.FlipSprite(direction.x);
     }
 
     public void TryJump()
@@ -45,7 +60,7 @@ public class CharacterController : MonoBehaviour
         if (Time.timeScale == 0f || !enableControll) return;
         if (characterMovement.HandleJump())
         {
-            //characterAnimation.PlayJump();
+            characterAnimation.SetJump();
         }
     }
 

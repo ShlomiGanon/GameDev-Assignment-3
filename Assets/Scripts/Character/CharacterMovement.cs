@@ -6,7 +6,8 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 direction = Vector2.zero;
     [SerializeField] CharacterSO data;
-    bool isGrounded = false;
+    private bool isGrounded = false;
+    private bool isPushing = false;
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class CharacterMovement : MonoBehaviour
         {
             return false; 
         }
+        isGrounded = false;
+
         rb2d.AddForceY(data.JumpForce, ForceMode2D.Impulse);
         return true;
     }
@@ -37,7 +40,34 @@ public class CharacterMovement : MonoBehaviour
     {
         rb2d.linearVelocityX = direction.x * data.MoveSpeed;
     }
+    private void CheckPushing(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Pushable"))
+            return;
 
+        if(!isGrounded)
+        {
+            isPushing = false;
+            return;
+        }
+
+        bool pushing = false;
+
+        foreach(ContactPoint2D contact in collision.contacts)
+        {
+            float directionToObject = -contact.normal.x;
+            if(Mathf.Abs(directionToObject) > 0.5f && direction.x * directionToObject > 0f)
+            {
+                pushing = true;
+                break;
+            }
+        }
+        isPushing = pushing;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckPushing(collision);
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.gameObject.CompareTag("Ground"))
@@ -51,6 +81,10 @@ public class CharacterMovement : MonoBehaviour
                 return;
             }
         }
+        if(other.gameObject.CompareTag("Pushable"))
+        {
+            isPushing = false;
+        }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -59,8 +93,20 @@ public class CharacterMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+    public float GetHorizontalVelocity()
+    {
+        return rb2d.linearVelocityX;
+    }
+    public float GetVerticalVelocity()
+    {
+        return rb2d.linearVelocityY;
+    }
     public bool GetIsGrounded()
     {
         return isGrounded;
+    }
+    public bool GetIsPushing()
+    {
+        return isPushing;
     }
 }
