@@ -23,32 +23,32 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetMovement(float speed)
     {
-        animator.SetFloat("Speed", Mathf.Abs(speed));
+        animator.SetFloat(nameof(AnimatorParameters.Speed), Mathf.Abs(speed));
     }
 
     public void SetJump()
     {
-        animator.SetTrigger("Jump");
+        animator.SetTrigger(nameof(AnimatorParameters.Jump));
     }
 
     public void SetGrounded(bool isGrounded)
     {
-        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetBool(nameof(AnimatorParameters.IsGrounded), isGrounded);
     }
 
     public void SetVerticalVelocity(float velocity)
     {
-        animator.SetFloat("VerticalVelocity", velocity);
+        animator.SetFloat(nameof(AnimatorParameters.VerticalVelocity), velocity);
     }
 
     public void SetPushing(bool isPushing)
     {
-        animator.SetBool("IsPush", isPushing);
+        animator.SetBool(nameof(AnimatorParameters.IsPushing), isPushing);
     }
 
     public void SetWin(bool isWin)
     {
-        animator.SetTrigger("Win");
+        animator.SetTrigger(nameof(AnimatorParameters.Win));
     }
 
     public void FlipSprite(float directionX)
@@ -57,6 +57,15 @@ public class CharacterAnimation : MonoBehaviour
 
         bool facingLeft = directionX < 0;
         spriteRenderer.flipX = facingLeft;
+    }
+    public enum AnimatorParameters 
+    {
+        Speed,
+        Jump,
+        IsGrounded,
+        Win,
+        IsPushing,
+        VerticalVelocity
     }
   
 }

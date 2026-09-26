@@ -44,7 +44,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Pushable"))
             return;
-
+        Debug.Log("Pushable");
         if(!isGrounded)
         {
             isPushing = false;
@@ -59,6 +59,7 @@ public class CharacterMovement : MonoBehaviour
             if(Mathf.Abs(directionToObject) > 0.5f && direction.x * directionToObject > 0f)
             {
                 pushing = true;
+                Debug.Log("isPushing");
                 break;
             }
         }
@@ -70,18 +71,18 @@ public class CharacterMovement : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("Ground"))
-            return;
-
-        foreach (ContactPoint2D contact in other.contacts)
+        if (other.gameObject.CompareTag("Ground"))
         {
-            if (contact.normal.y > 0.5f)
+            foreach (ContactPoint2D contact in other.contacts)
             {
-                isGrounded = true;
-                return;
+                if (contact.normal.y > 0.5f)
+                {
+                    isGrounded = true;
+                    return;
+                }
             }
         }
-        if(other.gameObject.CompareTag("Pushable"))
+        else if(other.gameObject.CompareTag("Pushable"))
         {
             isPushing = false;
         }
