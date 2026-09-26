@@ -6,8 +6,14 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 direction = Vector2.zero;
     [SerializeField] CharacterSO data;
+
     private bool isGrounded = false;
     private bool isPushing = false;
+    private const float HalfSideContact = 0.5f;
+    private const float MinGroundNormalY = 0.5f;
+
+    public event Action<bool> OnGroundedChanged;
+    public event Action<bool> OnPushingChanged;
 
     private void Awake()
     {
@@ -31,7 +37,7 @@ public class CharacterMovement : MonoBehaviour
         {
             return false; 
         }
-        isGrounded = false;
+        SetGrounded(false);
 
         rb2d.AddForceY(data.JumpForce, ForceMode2D.Impulse);
         return true;
@@ -47,7 +53,7 @@ public class CharacterMovement : MonoBehaviour
         Debug.Log("Pushable");
         if(!isGrounded)
         {
-            isPushing = false;
+            SetPushing(false);
             return;
         }
 
@@ -56,14 +62,14 @@ public class CharacterMovement : MonoBehaviour
         foreach(ContactPoint2D contact in collision.contacts)
         {
             float directionToObject = -contact.normal.x;
-            if(Mathf.Abs(directionToObject) > 0.5f && direction.x * directionToObject > 0f)
+            if(Mathf.Abs(directionToObject) > HalfSideContact && direction.x * directionToObject > 0f)
             {
                 pushing = true;
                 Debug.Log("isPushing");
                 break;
             }
         }
-        isPushing = pushing;
+        SetPushing(pushing);
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
@@ -75,24 +81,45 @@ public class CharacterMovement : MonoBehaviour
         {
             foreach (ContactPoint2D contact in other.contacts)
             {
-                if (contact.normal.y > 0.5f)
+                if (contact.normal.y > MinGroundNormalY)
                 {
-                    isGrounded = true;
+                    SetGrounded(true);
                     return;
                 }
             }
         }
         else if(other.gameObject.CompareTag("Pushable"))
         {
-            isPushing = false;
+            SetPushing(false);
         }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground"))
         {
-            isGrounded = false;
+            SetGrounded(false);
         }
+
+        if (other.gameObject.CompareTag("Pushable"))
+        {
+            SetPushing(false);
+        }
+    }
+    private void SetGrounded(bool value)
+    {
+        if (value == isGrounded)
+            return;
+
+        isGrounded = value;
+        OnGroundedChanged?.Invoke(isGrounded);
+    }
+    private void SetPushing(bool value)
+    {
+        if(value == isPushing) 
+            return;
+
+        isPushing= value;
+        OnPushingChanged?.Invoke(isPushing);
     }
     public float GetHorizontalVelocity()
     {
