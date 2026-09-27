@@ -11,9 +11,11 @@ public class NPC : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image canvasPortraitImage;
+    [SerializeField] private TMP_Text buttonText;
 
     private bool isTalking;
-
+    private bool isTyping = false;
+    private bool toNextMessage = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isTalking)
@@ -21,7 +23,20 @@ public class NPC : MonoBehaviour
             StartCoroutine(PlayDialogue());
         }
     }
+    public void OnDialogueButtonClicked()
+    {
+        if (!isTalking)
+            return;
 
+        if(isTyping)
+        {
+            isTyping = false;
+        }
+        else
+        {
+            toNextMessage = true;
+        }
+    }
     private IEnumerator PlayDialogue()
     {
         isTalking = true;
@@ -33,17 +48,33 @@ public class NPC : MonoBehaviour
             canvasPortraitImage.sprite = dialogueData.NpcPortrait;
         }
 
-        foreach (string message in dialogueData.DialogueLines)
+        for(int i = 0; i < dialogueData.DialogueLines.Length ; i++) 
         {
+            string message = dialogueData.DialogueLines[i];
+
             dialogueText.SetText("");
+
+            isTyping = true;
+            toNextMessage = false;
+
+            buttonText.SetText("Skip");
 
             foreach (char letter in message)
             {
+                if (!isTyping)
+                    break;
+
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(dialogueData.TypingSpeed);
             }
 
-            yield return new WaitForSeconds(dialogueData.MessageDelay);
+            bool isLastMessage = i == dialogueData.DialogueLines.Length - 1;
+            buttonText.SetText(isLastMessage ? "Close" : "Next");
+            
+            dialogueText.SetText(message);
+            isTyping = false;
+
+            yield return new WaitUntil(()=> toNextMessage);
         }
 
         dialogueText.SetText("");
