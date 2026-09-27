@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: VerticalVelpcity
+    m_ConditionEvent: VerticalVelocity
     m_EventTreshold: -0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7915287375462218135}
@@ -85,7 +85,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: VerticalVelpcity
+    m_ConditionEvent: VerticalVelocity
     m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: IsPushing
@@ -217,9 +217,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Push
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsPushing
     m_EventTreshold: 0
@@ -353,7 +350,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: VerticalVelpcity
+  - m_Name: VerticalVelocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -414,7 +411,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: VerticalVelpcity
+    m_ConditionEvent: VerticalVelocity
     m_EventTreshold: -0.1
   - m_ConditionMode: 2
     m_ConditionEvent: IsGrounded
