@@ -7,13 +7,8 @@ public class CharacterMovement : MonoBehaviour
     Vector2 direction = Vector2.zero;
     [SerializeField] CharacterSO data;
 
+    private float minGroundNormalY;
     private bool isGrounded = false;
-    private bool isPushing = false;
-    private const float HalfSideContact = 0.5f;
-    private const float MinGroundNormalY = 0.5f;
-
-    public event Action<bool> OnGroundedChanged;
-    public event Action<bool> OnPushingChanged;
 
     private void Awake()
     {
@@ -37,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
         {
             return false; 
         }
-        SetGrounded(false);
+        isGrounded = false;
 
         rb2d.AddForceY(data.JumpForce, ForceMode2D.Impulse);
         return true;
@@ -46,80 +41,27 @@ public class CharacterMovement : MonoBehaviour
     {
         rb2d.linearVelocityX = direction.x * data.MoveSpeed;
     }
-    private void CheckPushing(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Pushable"))
-            return;
-        Debug.Log("Pushable");
-        if(!isGrounded)
-        {
-            SetPushing(false);
-            return;
-        }
-
-        bool pushing = false;
-
-        foreach(ContactPoint2D contact in collision.contacts)
-        {
-            float directionToObject = -contact.normal.x;
-            if(Mathf.Abs(directionToObject) > HalfSideContact && direction.x * directionToObject > 0f)
-            {
-                pushing = true;
-                Debug.Log("isPushing");
-                break;
-            }
-        }
-        SetPushing(pushing);
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        CheckPushing(collision);
-    }
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             foreach (ContactPoint2D contact in other.contacts)
             {
-                if (contact.normal.y > MinGroundNormalY)
+                if (contact.normal.y > minGroundNormalY)
                 {
-                    SetGrounded(true);
+                    isGrounded = true;
                     return;
                 }
             }
         }
-        else if(other.gameObject.CompareTag("Pushable"))
-        {
-            SetPushing(false);
-        }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.CompareTag("Ground"))
         {
-            SetGrounded(false);
+            isGrounded = false;
         }
-
-        if (other.gameObject.CompareTag("Pushable"))
-        {
-            SetPushing(false);
-        }
-    }
-    private void SetGrounded(bool value)
-    {
-        if (value == isGrounded)
-            return;
-
-        isGrounded = value;
-        OnGroundedChanged?.Invoke(isGrounded);
-    }
-    private void SetPushing(bool value)
-    {
-        if(value == isPushing) 
-            return;
-
-        isPushing= value;
-        OnPushingChanged?.Invoke(isPushing);
     }
     public float GetHorizontalVelocity()
     {
@@ -132,9 +74,5 @@ public class CharacterMovement : MonoBehaviour
     public bool GetIsGrounded()
     {
         return isGrounded;
-    }
-    public bool GetIsPushing()
-    {
-        return isPushing;
     }
 }

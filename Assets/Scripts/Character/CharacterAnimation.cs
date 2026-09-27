@@ -53,7 +53,8 @@ public class CharacterAnimation : MonoBehaviour
 
     public void FlipSprite(float directionX)
     {
-        if (Mathf.Approximately(directionX, 0f))return;
+        if (Mathf.Approximately(directionX, 0f))
+            return;
 
         bool facingLeft = directionX < 0;
         spriteRenderer.flipX = facingLeft;

@@ -9,7 +9,12 @@ public class CharacterController : MonoBehaviour
 {
     private CharacterMovement characterMovement;
     private CharacterAnimation characterAnimation;
+
     private bool enableControll = true;
+    private bool isPushing = false;
+    private bool lastGrounded;
+    private Vector2 directionX = Vector2.zero;
+
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -27,8 +32,7 @@ public class CharacterController : MonoBehaviour
     {
         characterAnimation.SetMovement(characterMovement.GetHorizontalVelocity());
         characterAnimation.SetVerticalVelocity(characterMovement.GetVerticalVelocity());
-        characterAnimation.SetGrounded(characterMovement.GetIsGrounded());
-        characterAnimation.SetPushing(characterMovement.GetIsPushing());
+        UpdateGroundedState();
     }
 
     public void EnableController()
@@ -42,7 +46,7 @@ public class CharacterController : MonoBehaviour
         characterMovement.HandleMovement(0f);
     }
 
-    public void SetFacing(float directionX)//check later if neccecary
+    public void SetFacing(float directionX)
     {
         if (Time.timeScale == 0f || !enableControll) return;
         characterAnimation.FlipSprite(directionX);
@@ -51,8 +55,10 @@ public class CharacterController : MonoBehaviour
     public void Move(Vector2 direction)
     {
         if (Time.timeScale == 0f || !enableControll) return;
+        directionX = direction;
+
         characterMovement.HandleMovement(direction.x);
-        characterAnimation.FlipSprite(direction.x);
+        SetFacing(direction.x);
     }
 
     public void TryJump()
@@ -63,11 +69,61 @@ public class CharacterController : MonoBehaviour
             characterAnimation.SetJump();
         }
     }
-
-    private IEnumerator HoldAndDestroy(float waitingTime)
+    private void UpdateGroundedState()
     {
-        yield return new WaitForSeconds(waitingTime);
-        Destroy(gameObject);
+        bool currentGrounded = characterMovement.GetIsGrounded();
+
+        if (lastGrounded == currentGrounded)
+            return;
+
+        lastGrounded = currentGrounded;
+        characterAnimation.SetGrounded(currentGrounded);
+    }
+
+    private void UpdatePushingState(bool value)
+    {
+        if (isPushing == value)
+            return;
+
+        isPushing = value;
+        characterAnimation.SetPushing(isPushing);
+    }
+    private void CheckPushing(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Pushable"))
+            return;
+       
+        if (!characterMovement.GetIsGrounded())
+        {
+            UpdatePushingState(false);
+            return;
+        }
+
+        bool pushing = false;
+
+        foreach(ContactPoint2D contact in collision.contacts)
+        {
+            float directionToObject = -contact.normal.x;
+            if(Math.Abs(contact.normal.x) > 0.5f && directionToObject * directionX.x > 0f)
+            {
+                pushing = true;
+                break;
+            }
+        }
+        UpdatePushingState(pushing);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        CheckPushing(collision);
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Pushable"))
+        {
+            UpdatePushingState(false);
+        }
     }
 
     private void OnEnable()
