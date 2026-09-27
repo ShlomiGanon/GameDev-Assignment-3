@@ -593,7 +593,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 777694503}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 846966935}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: OnDialogueButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &777694503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +644,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777694500}
   m_CullTransparentMesh: 1
+--- !u!114 &846966935 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
+  m_PrefabInstance: {fileID: 6177001454646226706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed553f2c5a417149a00934ff1fba464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPC
 --- !u!1 &892580893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1989406418
 MonoBehaviour:
   m_ObjectHideFlags: 0
