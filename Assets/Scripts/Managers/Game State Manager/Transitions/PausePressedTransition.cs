@@ -1,8 +1,11 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PausePressedTransition : TransitionBase
 {
     bool pausePressed = false;
+    private string[] menuSceneNames = { "MainMenu" };
 
     private void Start()
     {
@@ -16,7 +19,7 @@ public class PausePressedTransition : TransitionBase
     
     public override bool ShouldTransition()
     {
-        bool shouldTransition = pausePressed;
+        bool shouldTransition = pausePressed && !menuSceneNames.Contains(SceneManager.GetActiveScene().name);
         pausePressed = false;
         return base.ShouldTransition() && shouldTransition;
     }
