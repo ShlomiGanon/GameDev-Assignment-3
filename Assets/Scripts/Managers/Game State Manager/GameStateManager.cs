@@ -78,11 +78,7 @@ public class GameStateManager : MonoBehaviour
             ChangeState(nextState);
         }
     }
-    public enum GameStates
-    {
-        In
-    }
-
+   
     private void OnDestroy()
     {
         GameStateEvents.GetCurrentState -= OnGetCurrentState;

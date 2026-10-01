@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fc9ae7bb079714fb552beca63758d3, type: 3}
   m_Name: InGame
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
-  <CanMove>k__BackingField: 0
-  <CanMenu>k__BackingField: 0
+  <CanMove>k__BackingField: 1
+  <CanMenu>k__BackingField: 1
