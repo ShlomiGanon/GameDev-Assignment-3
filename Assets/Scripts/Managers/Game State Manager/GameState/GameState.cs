@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour
     
     public void Enter ()
     {
-        //TODO: Invoke State updated events
+        GameStateEvents.StateUpdated?.Invoke(StateRules);
     }
     
     public GameState GetNextState()

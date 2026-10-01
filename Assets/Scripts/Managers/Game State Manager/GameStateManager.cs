@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class GameStateManager : MonoBehaviour
@@ -15,12 +16,30 @@ public class GameStateManager : MonoBehaviour
     private void Awake()
     {
         states.AddRange(GetComponentsInChildren<GameState>());
-        //TODO: subscribes to events
+
+        GameStateEvents.GetCurrentState += OnGetCurrentState;
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         if(CurrentState == null)
         {
             ChangeState(defaultState);
         }
+    }
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if(CurrentState == null)
+        {
+            CurrentState = defaultState;
+            ChangeState(CurrentState);
+        }
+        else
+        {
+            CurrentState.Enter();
+        }
+    }
+    private StateSO OnGetCurrentState()
+    {
+        return CurrentState.StateRules;
     }
 
     private void ChangeState(GameState newState)
@@ -62,5 +81,11 @@ public class GameStateManager : MonoBehaviour
     public enum GameStates
     {
         In
+    }
+
+    private void OnDestroy()
+    {
+        GameStateEvents.GetCurrentState -= OnGetCurrentState;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
