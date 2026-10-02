@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   <CanMove>k__BackingField: 1
   <CanMenu>k__BackingField: 1
+  <ShowPauseMenu>k__BackingField: 0
