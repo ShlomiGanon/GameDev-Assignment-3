@@ -19,9 +19,8 @@ public abstract class TransitionBase : MonoBehaviour
         }
     }
 
-    public virtual bool ShouldTransition()
-    {
-        return true;
-    }
+    public abstract void ResetParameters();
+
+    public abstract bool ShouldTransition();
 
 }

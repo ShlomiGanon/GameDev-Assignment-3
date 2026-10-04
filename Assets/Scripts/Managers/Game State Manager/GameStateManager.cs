@@ -9,7 +9,7 @@ public class GameStateManager : MonoBehaviour
     List<GameState> states = new();
     [field: SerializeField] public GameState CurrentState { get;private set; }
     [field: SerializeField] public GameState PreviousState { get; set; }
-    [SerializeField] GameState defaultState; //starting state or if the real current state is null
+    [SerializeField] GameState defaultState;
 
     bool justChangedState = false;
 
@@ -52,11 +52,10 @@ public class GameStateManager : MonoBehaviour
         if (newState == CurrentState)
             return;
 
+        justChangedState = true;
         PreviousState = CurrentState;
         CurrentState = newState;
         CurrentState.Enter();
-
-        justChangedState = true;
     }
 
     private void Update()

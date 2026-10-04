@@ -13,12 +13,17 @@ public class GameState : MonoBehaviour
     {
         transitions.AddRange(GetComponentsInChildren<TransitionBase>());
     }
-    
-    public void Enter ()
+
+    public void Enter()
     {
+        foreach (TransitionBase transition in transitions)
+        {
+            transition.ResetParameters();
+        }
+
         GameStateEvents.StateUpdated?.Invoke(StateRules);
     }
-    
+
     public GameState GetNextState()
     {
         foreach (var transition in transitions)
