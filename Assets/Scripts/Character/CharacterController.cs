@@ -130,11 +130,25 @@ public class CharacterController : MonoBehaviour
     {
         InputEvents.Move += Move;
         InputEvents.Jump += TryJump;
+        GameStateEvents.StateUpdated += OnStateUpdated;
     }
 
     private void OnDisable()
     {
         InputEvents.Move -= Move;
         InputEvents.Jump -= TryJump;
+        GameStateEvents.StateUpdated -= OnStateUpdated;
+    }
+
+    private void OnStateUpdated(StateSO state)
+    {
+        if(state.CanMove)
+        {
+            EnableController();
+        }
+        else
+        {
+            DisableController();
+        }
     }
 }
