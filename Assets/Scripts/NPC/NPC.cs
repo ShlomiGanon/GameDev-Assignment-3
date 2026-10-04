@@ -20,6 +20,7 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isTalking)
         {
+            OnDialogueStart();
             StartCoroutine(PlayDialogue());
         }
     }
@@ -76,10 +77,11 @@ public class NPC : MonoBehaviour
 
             yield return new WaitUntil(()=> toNextMessage);
         }
-
+        OnDialogueEnd();
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
 
         isTalking = false;
     }
+
 }
