@@ -562,6 +562,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
+--- !u!1 &635995215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635995216}
+  - component: {fileID: 635995217}
+  m_Layer: 0
+  m_Name: DialogueStartTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &635995216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635995215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 806403885}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &635995217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635995215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4bc195886acba4796d1666ef85cd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTransition
+  <TargetState>k__BackingField: {fileID: 1929096616}
+  trigger: 1
 --- !u!114 &752559741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
@@ -637,6 +683,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 101394807}
+    - targetCorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 635995216}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
 --- !u!4 &806403883 stripped
@@ -660,17 +709,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
   m_PrefabInstance: {fileID: 806403882}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &806403886 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4552803163453959567, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 806403882}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!1 &854098087
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 854098088}
+  - component: {fileID: 854098089}
   m_Layer: 0
   m_Name: DialogueEndTransition
   m_TagString: Untagged
@@ -702,6 +741,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1929096615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854098089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854098087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b4bc195886acba4796d1666ef85cd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTransition
+  <TargetState>k__BackingField: {fileID: 806403884}
+  trigger: 0
 --- !u!114 &892246006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2796799133276811576, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
@@ -1161,6 +1214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1929096615}
+  - component: {fileID: 1929096616}
   m_Layer: 0
   m_Name: inDialogueState
   m_TagString: Untagged
@@ -1182,9 +1236,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 854098088}
-  - {fileID: 1987284371}
   m_Father: {fileID: 806403883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929096616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929096614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameState
+  <StateRules>k__BackingField: {fileID: 11400000, guid: 84b3c6d6cc846b7428c912c6e6af4732, type: 2}
 --- !u!1 &1969083095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,53 +1480,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1987284370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1987284371}
-  - component: {fileID: 1987284372}
-  m_Layer: 0
-  m_Name: PausePressedTransition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1987284371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987284370}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1929096615}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1987284372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987284370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8a34d5c409e4746b104c599afb41d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PausePressedTransition
-  <TargetState>k__BackingField: {fileID: 806403886}
-  menuSceneNames:
-  - MainMenu
 --- !u!1 &2145800594
 GameObject:
   m_ObjectHideFlags: 0

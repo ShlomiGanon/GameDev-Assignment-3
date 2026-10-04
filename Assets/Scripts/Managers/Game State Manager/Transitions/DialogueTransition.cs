@@ -10,11 +10,11 @@ public class DialogueTransition : TransitionBase
     {
         if(trigger == DialogueStatusTransition.dialogueStart)
         {
-            DialogueEvents.OnDialogueStart += CanTransitionUpdate;
+            DialogueEvents.dialogueStart += CanTransitionUpdate;
         }
         else if(trigger == DialogueStatusTransition.dialogueEnd)
         {
-            DialogueEvents.OnDialogueEnd += CanTransitionUpdate;
+            DialogueEvents.dialogueEnd += CanTransitionUpdate;
         }
     }
 
@@ -22,11 +22,11 @@ public class DialogueTransition : TransitionBase
     {
         if (trigger == DialogueStatusTransition.dialogueStart)
         {
-            DialogueEvents.OnDialogueStart -= CanTransitionUpdate;
+            DialogueEvents.dialogueStart -= CanTransitionUpdate;
         }
         else if (trigger == DialogueStatusTransition.dialogueEnd)
         {
-            DialogueEvents.OnDialogueEnd -= CanTransitionUpdate;
+            DialogueEvents.dialogueEnd -= CanTransitionUpdate;
         }
     }
 
