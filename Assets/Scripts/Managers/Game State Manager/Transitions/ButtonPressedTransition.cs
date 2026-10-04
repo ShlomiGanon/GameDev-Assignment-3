@@ -23,7 +23,6 @@ public class ButtonPressedTransition : TransitionBase
 
     public override bool ShouldTransition()
     {
-        Debug.Log("ShouldTransit");
         bool shouldTransition = hasPressed;
         ResetParameters();
         return shouldTransition;

@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class PausePressedTransition : TransitionBase
 {
     bool pausePressed = false;
-    [SerializeField]
-    List<string> menuSceneNames = new()
+    [SerializeField] List<string> menuSceneNames = new()
     {
         "MainMenu"
     };

@@ -487,9 +487,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1886865508092298474, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 787548070}
-    - targetCorrespondingSourceObject: {fileID: 9205172626528117270, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 551000829}
   m_SourcePrefab: {fileID: 100100000, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
 --- !u!114 &551000827 stripped
 MonoBehaviour:
@@ -507,22 +504,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9205172626528117270, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
   m_PrefabInstance: {fileID: 551000826}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &551000829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551000828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7787fd91e4d8b34dba9cbe514f7e04a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuController
-  pausePanel: {fileID: 551000828}
-  resumeButton: {fileID: 551000827}
-  backToMenu: {fileID: 1118481889}
-  restartButton: {fileID: 98264877}
 --- !u!114 &752559741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
@@ -551,10 +532,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7787fd91e4d8b34dba9cbe514f7e04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuController
-  pausePanel: {fileID: 551000828}
-  resumeButton: {fileID: 551000827}
-  backToMenu: {fileID: 1118481889}
+  pauseMenuPanel: {fileID: 551000828}
+  continueButton: {fileID: 551000827}
   restartButton: {fileID: 98264877}
+  backToMenuButton: {fileID: 1118481889}
 --- !u!1001 &806403882
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,37 +1,16 @@
-using System;
-using TMPro.Examples;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine.UI;
-
+using System;
+using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private Button resumeButton;
-    [SerializeField] private Button backToMenu;
-    [SerializeField] private Button restartButton;
+    [SerializeField] private GameObject pauseMenuPanel;
 
-    private static float GameTimeScale = 1.0f;
-    private static float PauseTimeScale = 0f;
-
-    private string menuSceneName = "MainMenu";
-
-
-    private void Awake()
-    {
-        GameStateEvents.StateUpdated += OnStateUpdated;
-
-        resumeButton.onClick.AddListener(OnResumeClicked);
-        backToMenu.onClick.AddListener(OnMenuClicked);
-        restartButton.onClick.AddListener(OnRestartClicked);
-
-    }
-
-    private void OnResumeClicked()
-    {
-        GameStateEvents.ButtonPressed?.Invoke(GameStateButtonTransition.Resume);
-        HideMenu();
-    }
+    [SerializeField] Button continueButton;
+    [SerializeField] Button restartButton;
+    [SerializeField] Button backToMenuButton;
+    string menuSceneName = "MainMenu";
 
     private void OnMenuClicked()
     {
@@ -46,41 +25,49 @@ public class PauseMenuController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void OnStateUpdated(StateSO state)
+    private void OnContinueClicked()
     {
-        Debug.Log("twis?");
-        pausePanel.SetActive(state.ShowPauseMenu);
+        GameStateEvents.ButtonPressed?.Invoke(GameStateButtonTransition.Resume);
+        HideMenu();
     }
 
     private void HideMenu()
     {
-        gameObject.SetActive(false);
-        Time.timeScale = GameTimeScale;
+        pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     private void ShowMenu()
     {
-        gameObject.SetActive(true);
-        Time.timeScale = PauseTimeScale;
+        pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    public void MenuPressed()
+    private void OnStateUpdated(StateSO state)
     {
-        if (gameObject.activeSelf)
-        {
-            HideMenu();
-        }
-        else
+        if (state.ShowMenu)
         {
             ShowMenu();
         }
+        else
+        {
+            HideMenu();
+        }
     }
-    private void OnDestroy()
-    {
-        resumeButton.onClick.RemoveListener(OnResumeClicked);
-        backToMenu.onClick.RemoveListener(OnMenuClicked);
-        restartButton.onClick.RemoveListener(OnRestartClicked);
 
+    private void OnEnable()
+    {
+        GameStateEvents.StateUpdated += OnStateUpdated;
+        continueButton.onClick.AddListener(OnContinueClicked);
+        restartButton.onClick.AddListener(OnRestartClicked);
+        backToMenuButton.onClick.AddListener(OnMenuClicked);
+    }
+
+    private void OnDisable()
+    {
         GameStateEvents.StateUpdated -= OnStateUpdated;
+        continueButton.onClick.RemoveListener(OnContinueClicked);
+        restartButton.onClick.RemoveListener(OnRestartClicked);
+        backToMenuButton.onClick.RemoveListener(OnMenuClicked);
     }
 }
