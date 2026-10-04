@@ -52,11 +52,10 @@ public class GameStateManager : MonoBehaviour
         if (newState == CurrentState)
             return;
 
+        justChangedState = true;
         PreviousState = CurrentState;
         CurrentState = newState;
         CurrentState.Enter();
-
-        justChangedState = true;
     }
 
     private void Update()

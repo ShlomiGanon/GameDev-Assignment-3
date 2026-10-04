@@ -1,11 +1,16 @@
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PausePressedTransition : TransitionBase
 {
     bool pausePressed = false;
-    private string[] menuSceneNames = { "MainMenu" };
+    [SerializeField]
+    List<string> menuSceneNames = new()
+    {
+        "MainMenu"
+    };
 
     private void Start()
     {
@@ -16,12 +21,17 @@ public class PausePressedTransition : TransitionBase
     {
         pausePressed = true;
     }
-    
+
     public override bool ShouldTransition()
     {
         bool shouldTransition = pausePressed && !menuSceneNames.Contains(SceneManager.GetActiveScene().name);
+        ResetParameters();
+        return shouldTransition;
+    }
+
+    public override void ResetParameters()
+    {
         pausePressed = false;
-        return base.ShouldTransition() && shouldTransition;
     }
 
     private void OnDestroy()
