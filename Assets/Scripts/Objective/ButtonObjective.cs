@@ -6,27 +6,18 @@ public class ButtonObjective : Objective
     [SerializeField] private GameObject allowedInteractor;
     //(allowedInteractor == null) -> any touch can active the button
     //(allowedInteractor != null) -> only the touch from this gameobject can active the button
-    private readonly HashSet<GameObject> activeInteractors = new();
+    private readonly HashSet<Collider2D> activeColliders = new();
     [SerializeField, Min(1)] private int skippingFrames = 100;
     private int currentFrame = 0;
 
     private void OnDisable()
     {
         // Unity won't call OnCollisionExit2D for a disabled button, so clear manually.
-        activeInteractors.Clear();
+        activeColliders.Clear();
 
         // OnDisable also runs when the scene unloads or Play mode stops.
         // Other objects may already be destroyed, so don't fire events then.
         if (gameObject.scene.isLoaded) UpdateCompleteStatus();
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (allowedInteractor == null || allowedInteractor == other.gameObject)
-        {
-            activeInteractors.Add(other.gameObject);
-        }
-        UpdateCompleteStatus();
     }
 
     private void Update()
@@ -40,28 +31,19 @@ public class ButtonObjective : Objective
         currentFrame = (currentFrame + 1) % skippingFrames;
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (allowedInteractor == null || allowedInteractor == other.gameObject)
-        {
-            activeInteractors.Add(other.gameObject);
-        }
-        UpdateCompleteStatus();
-    }
+    private void OnCollisionEnter2D(Collision2D other) => HandleContact(other);
+    private void OnCollisionStay2D(Collision2D other) => HandleContact(other);
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (activeInteractors.Contains(other.gameObject))
-        {
-            activeInteractors.Remove(other.gameObject);
-        }
+        activeColliders.Remove(other.collider);
         UpdateCompleteStatus();
     }
-
     private void UpdateCompleteStatus()
     {
-        activeInteractors.RemoveWhere(i => i == null || !i.activeInHierarchy);
-        if (activeInteractors.Count > 0)
+        activeColliders.RemoveWhere(c => c == null || !c.enabled || !c.gameObject.activeInHierarchy);
+
+        if (activeColliders.Count > 0)
         {
             if (!IsCompleted) SetComplete();
         }
@@ -69,5 +51,24 @@ public class ButtonObjective : Objective
         {
             if (IsCompleted) SetUncomplete();
         }
+    }
+
+    private bool IsAllowed(Collision2D other)
+    {
+        if (allowedInteractor == null) return true;
+
+        Transform touchingTransform = other.collider.transform;
+        Transform allowedTransform = allowedInteractor.transform;
+
+        bool touchingColliderIsOnTheAllowedObject = touchingTransform == allowedTransform;
+        bool touchingColliderIsOnAChildOfTheAllowedObject = touchingTransform.IsChildOf(allowedTransform);
+
+        return touchingColliderIsOnTheAllowedObject || touchingColliderIsOnAChildOfTheAllowedObject;
+    }
+
+    private void HandleContact(Collision2D other)
+    {
+        if (IsAllowed(other)) activeColliders.Add(other.collider);
+        UpdateCompleteStatus();
     }
 }
