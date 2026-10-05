@@ -58,10 +58,14 @@ public class LevelManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        LevelEvents.loadNextLevel += LoadNextLevel;
+        LevelEvents.checkForNextLevel += CheckForNextLevel;
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        LevelEvents.loadNextLevel -= LoadNextLevel;
+        LevelEvents.checkForNextLevel -= CheckForNextLevel;
     }
 }
