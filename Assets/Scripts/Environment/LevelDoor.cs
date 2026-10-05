@@ -6,7 +6,6 @@ public class LevelDoor : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openedSprite;
-    [SerializeField] private string nextSceneName;
 
     private bool isOpen;
 
@@ -32,9 +31,19 @@ public class LevelDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag("Player") && !isOpen)
-            return;
+        if (other.CompareTag("Player"))
+        {
+            LevelEvents.OnFinishLineTriggered();
+        }
+    }
 
-        SceneManager.LoadScene(nextSceneName);
+    private void OnEnable()
+    {
+        ObjectivesEvents.objectivesCompleted += OpenDoor;
+    }
+
+    private void OnDisable()
+    {
+        ObjectivesEvents.objectivesCompleted -= OpenDoor;
     }
 }
