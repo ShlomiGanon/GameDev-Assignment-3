@@ -39,11 +39,11 @@ public class LevelDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        ObjectivesEvents.objectivesCompleted += OpenDoor;
+        ObjectivesEvents.ObjectivesCompleted += OpenDoor;
     }
 
     private void OnDisable()
     {
-        ObjectivesEvents.objectivesCompleted -= OpenDoor;
+        ObjectivesEvents.ObjectivesCompleted -= OpenDoor;
     }
 }
