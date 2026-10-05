@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bd157721ee21a4fae4ba949216355d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HasNextLevelTransition
-  <TargetState>k__BackingField: {fileID: 0}
+  <TargetState>k__BackingField: {fileID: 757671587608378608}
 --- !u!1 &668518987775175783
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252cb0eca2c4d684a85d4510e0d13652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadNextLevelState
-  <StateRules>k__BackingField: {fileID: 0}
+  <StateRules>k__BackingField: {fileID: 11400000, guid: 2f98421a68974e5499e40c7fa36014c5, type: 2}
 --- !u!1 &3859967826045613127
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
-  <StateRules>k__BackingField: {fileID: 0}
+  <StateRules>k__BackingField: {fileID: 11400000, guid: 95a6be46f512a0f4692dbdd43f2833ee, type: 2}
 --- !u!1 &7753165161576902951
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549b319101ac421468240b2657dd9fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelEndState
-  <StateRules>k__BackingField: {fileID: 0}
+  <StateRules>k__BackingField: {fileID: 11400000, guid: 459ccb0332aaebc45943b69d973579f5, type: 2}
 --- !u!1 &8108032786833083982
 GameObject:
   m_ObjectHideFlags: 0
