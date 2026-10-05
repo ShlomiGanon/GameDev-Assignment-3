@@ -1,8 +1,5 @@
-using NUnit.Framework;
+
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,54 +14,45 @@ public class Objective : MonoBehaviour
     [field: SerializeField] public bool TriggerUncompleteOnStart { get; private set; }
 
     //instance events (to be able to add on inspector)
-    [SerializeField] private UnityEvent startEvents;
-    [SerializeField] private UnityEvent completeEvents;
-    [SerializeField] private UnityEvent unCompleteEvents;
+    [SerializeField] private UnityEvent additionalStartEvent;
+    [SerializeField] private UnityEvent additionalCompleteEvent;
+    [SerializeField] private UnityEvent additionalUnCompleteEvent;
+    //instance events (to be able to add on inspector)
+    public event Action<Objective> StartEvent;
+    public event Action<Objective> CompleteEvent;
+    public event Action<Objective> UnCompleteEvent;
 
-    //global objectives events (every insance fire them)
-
-    private void Start()
+    virtual protected void Start()
     {
-        SetAsNotCompleted();
         if (TriggerUncompleteOnStart) 
         {
-            unCompleteEvents?.Invoke();
-            ObjectivesEvents.OnObjectiveUncompleted(this);
+            SetUncomplete(true);
+        }
+        else if(IsCompleted)
+        {
+            SetComplete(true);
         }
         else
         {
-            startEvents?.Invoke();
-            ObjectivesEvents.OnObjectiveStart(this);
+            StartEvent?.Invoke(this);
+            additionalStartEvent?.Invoke();
         }
     }
-
-
-
-    private void SetAsCompleted()
+    public void SetComplete() => SetComplete(false);
+    protected void SetComplete(bool force)
     {
+        if (IsCompleted && !force) return;
         IsCompleted = true;
+        CompleteEvent?.Invoke(this);
+        additionalCompleteEvent?.Invoke();
     }
 
-    private void SetAsNotCompleted()
+    public void SetUncomplete() => SetUncomplete(false);
+    protected void SetUncomplete(bool force)
     {
+        if (!IsCompleted && !force) return;
         IsCompleted = false;
+        UnCompleteEvent?.Invoke(this);
+        additionalUnCompleteEvent?.Invoke();
     }
-
-
-
-    public void SetComplete()
-    {
-        SetAsCompleted();
-        completeEvents?.Invoke();
-        ObjectivesEvents.OnObjectiveCompleted(this);
-    }
-
-
-    public void SetUncomplete()
-    {
-        SetAsNotCompleted();
-        unCompleteEvents?.Invoke();
-        ObjectivesEvents.OnObjectiveUncompleted(this);
-    }
-
 }
