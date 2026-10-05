@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3fc9ae7bb079714fb552beca63758d3, type: 3}
-  m_Name: inDialogue
+  m_Name: GameSucceedState
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   <CanMove>k__BackingField: 0
   <ShowMenu>k__BackingField: 0

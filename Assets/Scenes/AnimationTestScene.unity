@@ -362,7 +362,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &101394806
+--- !u!1 &141500944
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,90 +370,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 101394807}
-  - component: {fileID: 101394808}
+  - component: {fileID: 141500945}
+  - component: {fileID: 141500946}
   m_Layer: 0
-  m_Name: ObjectivesCompletedTransition
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &101394807
+--- !u!4 &141500945
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101394806}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 806403885}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &101394808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101394806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df4a9460c3ed5584ba9befdbc2f2a633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectivesStatusChangedTransition
-  <TargetState>k__BackingField: {fileID: 1447434517}
-  trigger: 0
---- !u!1 &223207017
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 223207018}
-  - component: {fileID: 223207019}
-  m_Layer: 0
-  m_Name: ObjectivesUncompletedTransition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &223207018
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223207017}
+  m_GameObject: {fileID: 141500944}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1447434516}
+  m_Father: {fileID: 872501756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &223207019
+--- !u!114 &141500946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223207017}
+  m_GameObject: {fileID: 141500944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df4a9460c3ed5584ba9befdbc2f2a633, type: 3}
+  m_Script: {fileID: 11500000, guid: 71be37a476f4c7f49a8ed412fac03fbc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectivesCompletedTransition
-  <TargetState>k__BackingField: {fileID: 806403884}
-  trigger: 1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  levelsData:
+  - {fileID: 11400000, guid: 1284f8557e1da804f9ccaa9473541349, type: 2}
+  - {fileID: 11400000, guid: ff6fdd290b22feb43a95401b38a437d5, type: 2}
+  - {fileID: 11400000, guid: 50374fd8cb013b5448467efc0825136d, type: 2}
 --- !u!114 &286752270 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4207503165163117765, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
@@ -465,6 +421,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!1 &447124570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 447124571}
+  - component: {fileID: 447124572}
+  m_Layer: 0
+  m_Name: FinishLineTriggerTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &447124571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447124570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 842324751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &447124572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447124570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1571ab2752a32f64e804b3abdeceac5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FinishLineTriggerTransition
+  <TargetState>k__BackingField: {fileID: 1660914308}
+--- !u!1 &482120628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482120629}
+  - component: {fileID: 482120630}
+  m_Layer: 0
+  m_Name: GameSucceedState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482120629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482120628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 806403883}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &482120630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482120628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameState
+  <StateRules>k__BackingField: {fileID: 0}
 --- !u!1001 &551000826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -562,52 +608,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5db7881eea1dc994191cc200048645f9, type: 3}
---- !u!1 &635995215
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 635995216}
-  - component: {fileID: 635995217}
-  m_Layer: 0
-  m_Name: DialogueStartTransition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &635995216
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635995215}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 806403885}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &635995217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635995215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4bc195886acba4796d1666ef85cd53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTransition
-  <TargetState>k__BackingField: {fileID: 1929096616}
-  trigger: 1
 --- !u!114 &752559741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
@@ -671,21 +671,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 6490901583524705409, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      propertyPath: m_Name
+      value: ObjectivesCompleteState
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3297393859679677655, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 141500945}
     - targetCorrespondingSourceObject: {fileID: 369510337242280854, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1447434516}
+      addedObject: {fileID: 1660914307}
     - targetCorrespondingSourceObject: {fileID: 369510337242280854, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1929096615}
-    - targetCorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      addedObject: {fileID: 482120629}
+    - targetCorrespondingSourceObject: {fileID: 369510337242280854, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 101394807}
-    - targetCorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      addedObject: {fileID: 859242357}
+    - targetCorrespondingSourceObject: {fileID: 8283319550679987340, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 635995216}
+      addedObject: {fileID: 447124571}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
 --- !u!4 &806403883 stripped
@@ -693,23 +700,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 369510337242280854, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
   m_PrefabInstance: {fileID: 806403882}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &806403884 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7715279034975389093, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 806403882}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
---- !u!4 &806403885 stripped
+--- !u!4 &842324751 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1953494835531509112, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8283319550679987340, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
   m_PrefabInstance: {fileID: 806403882}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &854098087
+--- !u!1 &859242356
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -717,44 +713,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 854098088}
-  - component: {fileID: 854098089}
+  - component: {fileID: 859242357}
+  - component: {fileID: 859242358}
   m_Layer: 0
-  m_Name: DialogueEndTransition
+  m_Name: LoadNextLevelState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &854098088
+--- !u!4 &859242357
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854098087}
+  m_GameObject: {fileID: 859242356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1929096615}
+  m_Children:
+  - {fileID: 899142420}
+  m_Father: {fileID: 806403883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &854098089
+--- !u!114 &859242358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854098087}
+  m_GameObject: {fileID: 859242356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4bc195886acba4796d1666ef85cd53, type: 3}
+  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTransition
-  <TargetState>k__BackingField: {fileID: 806403884}
-  trigger: 0
+  m_EditorClassIdentifier: Assembly-CSharp::GameState
+  <StateRules>k__BackingField: {fileID: 0}
+--- !u!4 &872501756 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3297393859679677655, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+  m_PrefabInstance: {fileID: 806403882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &892246006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2796799133276811576, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
@@ -766,6 +767,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &899142419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899142420}
+  m_Layer: 0
+  m_Name: BaseTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899142420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899142419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859242357}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &960509976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -909,7 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &1447434515
+--- !u!1 &1660914306
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -917,44 +949,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1447434516}
-  - component: {fileID: 1447434517}
+  - component: {fileID: 1660914307}
+  - component: {fileID: 1660914308}
   m_Layer: 0
-  m_Name: AllObjectiveWasCompletedState
+  m_Name: LevelEndState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1447434516
+--- !u!4 &1660914307
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447434515}
+  m_GameObject: {fileID: 1660914306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 223207018}
+  - {fileID: 1723204736}
+  - {fileID: 1840405906}
   m_Father: {fileID: 806403883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1447434517
+--- !u!114 &1660914308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447434515}
+  m_GameObject: {fileID: 1660914306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
+  m_Script: {fileID: 11500000, guid: 549b319101ac421468240b2657dd9fc0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
-  <StateRules>k__BackingField: {fileID: 11400000, guid: 84b3c6d6cc846b7428c912c6e6af4732, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::LevelEndState
+  <StateRules>k__BackingField: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!1 &1701812753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1068,51 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
+--- !u!1 &1723204735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723204736}
+  - component: {fileID: 1723204737}
+  m_Layer: 0
+  m_Name: HasNoNextLevelTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723204736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723204735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1660914307}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723204737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723204735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ff25d06a106d84790238021ebb91f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HasNoNextLevelTransition
+  <TargetState>k__BackingField: {fileID: 482120630}
 --- !u!1 &1825121655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,12 +1279,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1928970729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9060703213654747294, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
-  m_PrefabInstance: {fileID: 61410619}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1929096614
+--- !u!1 &1840405905
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1213,44 +1287,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1929096615}
-  - component: {fileID: 1929096616}
+  - component: {fileID: 1840405906}
+  - component: {fileID: 1840405907}
   m_Layer: 0
-  m_Name: inDialogueState
+  m_Name: HasNextLevelTransition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1929096615
+--- !u!4 &1840405906
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929096614}
+  m_GameObject: {fileID: 1840405905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 854098088}
-  m_Father: {fileID: 806403883}
+  m_Children: []
+  m_Father: {fileID: 1660914307}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1929096616
+--- !u!114 &1840405907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929096614}
+  m_GameObject: {fileID: 1840405905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
+  m_Script: {fileID: 11500000, guid: f2bd157721ee21a4fae4ba949216355d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
-  <StateRules>k__BackingField: {fileID: 11400000, guid: 84b3c6d6cc846b7428c912c6e6af4732, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::HasNextLevelTransition
+  <TargetState>k__BackingField: {fileID: 859242358}
+--- !u!1 &1928970729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9060703213654747294, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
+  m_PrefabInstance: {fileID: 61410619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1969083095
 GameObject:
   m_ObjectHideFlags: 0

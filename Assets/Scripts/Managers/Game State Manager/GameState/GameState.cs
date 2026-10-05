@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour
         transitions.AddRange(GetComponentsInChildren<TransitionBase>());
     }
 
-    public void Enter()
+    public virtual void Enter()
     {
         foreach (TransitionBase transition in transitions)
         {
