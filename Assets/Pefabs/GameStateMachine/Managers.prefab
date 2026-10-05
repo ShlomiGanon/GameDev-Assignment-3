@@ -503,9 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0538e41c95dcd8740b6918c63f83e3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
-  mandatoryObjectives:
-  - {fileID: 0}
-  <AllObjectivesCompleted>k__BackingField: 0
+  objSet: {fileID: 0}
 --- !u!1 &6052126503156715414
 GameObject:
   m_ObjectHideFlags: 0
