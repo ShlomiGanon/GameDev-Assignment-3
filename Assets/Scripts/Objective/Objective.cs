@@ -1,8 +1,5 @@
-using NUnit.Framework;
+
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,45 +22,37 @@ public class Objective : MonoBehaviour
     public event Action<Objective> CompleteEvent;
     public event Action<Objective> UnCompleteEvent;
 
-    private void Start()
+    virtual protected void Start()
     {
         if (TriggerUncompleteOnStart) 
         {
-            SetUncomplete();
+            SetUncomplete(true);
+        }
+        else if(IsCompleted)
+        {
+            SetComplete(true);
         }
         else
         {
-            SetAsNotCompleted();
             StartEvent?.Invoke(this);
             additionalStartEvent?.Invoke();
         }
     }
-
-    private void SetAsCompleted()
+    public void SetComplete() => SetComplete(false);
+    protected void SetComplete(bool force)
     {
+        if (IsCompleted && !force) return;
         IsCompleted = true;
-    }
-
-    private void SetAsNotCompleted()
-    {
-        IsCompleted = false;
-    }
-
-
-
-    public void SetComplete()
-    {
-        SetAsCompleted();
         CompleteEvent?.Invoke(this);
         additionalCompleteEvent?.Invoke();
     }
 
-
-    public void SetUncomplete()
+    public void SetUncomplete() => SetUncomplete(false);
+    protected void SetUncomplete(bool force)
     {
-        SetAsNotCompleted();
+        if (!IsCompleted && !force) return;
+        IsCompleted = false;
         UnCompleteEvent?.Invoke(this);
         additionalUnCompleteEvent?.Invoke();
     }
-
 }
