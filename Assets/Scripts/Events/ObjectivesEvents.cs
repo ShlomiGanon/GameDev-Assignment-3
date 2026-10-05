@@ -1,18 +1,17 @@
 using System;
-using UnityEngine;
 
 public static class ObjectivesEvents
 {
-    public static event Action objectivesCompleted;
-    public static event Action objectivesIncompleted;
+    public static event Action ObjectivesCompleted;
+    public static event Action ObjectivesIncompleted;
 
     public static void OnObjectivesCompleted()
     {
-        objectivesCompleted?.Invoke();
+        ObjectivesCompleted?.Invoke();
     }
 
     public static void OnObjectivesIncompleted()
     {
-        objectivesIncompleted?.Invoke();
+        ObjectivesIncompleted?.Invoke();
     }
 }

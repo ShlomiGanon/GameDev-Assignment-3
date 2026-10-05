@@ -5,8 +5,8 @@ using UnityEngine;
 public class ObjectiveSet : Objective
 {
     [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
-    private readonly HashSet<Objective> objectivesNeedToComplete = new();
-    private readonly HashSet<Objective> objectivesCompleted = new();
+    private HashSet<Objective> objectivesNeedToComplete = new();
+    private HashSet<Objective> objectivesCompleted = new();
     public event Action<Objective> OnObjectiveChanged;
     public enum TrackMode
     {
@@ -17,16 +17,21 @@ public class ObjectiveSet : Objective
 
     private void OnEnable()
     {
+        this.CompleteEvent += OnSelfStateChanged;
+        this.UnCompleteEvent += OnSelfStateChanged;
         InitializeTracker();
-        this.CompleteEvent += OnObjectiveChanged;
-        this.UnCompleteEvent += OnObjectiveChanged;
     }
 
     private void OnDisable()
     {
         UnRegisterToObjectivesEvents();
-        this.CompleteEvent -= OnObjectiveChanged;
-        this.UnCompleteEvent -= OnObjectiveChanged;
+        this.CompleteEvent -= OnSelfStateChanged;
+        this.UnCompleteEvent -= OnSelfStateChanged;
+    }
+
+    private void OnSelfStateChanged(Objective objective)
+    {
+        OnObjectiveChanged?.Invoke(objective);
     }
 
     private void RegisterToObjectivesEvents()
@@ -59,8 +64,8 @@ public class ObjectiveSet : Objective
 
     public void SetObjectivesList(List<Objective> newObjectivesList)
     {
-        objectivesToTrack = newObjectivesList;
-        InitializeTracker();
+        objectivesToTrack = newObjectivesList ?? new List<Objective>();
+        if (isActiveAndEnabled) InitializeTracker();
     }
 
     public void SetTrackMode(TrackMode trackMode)
@@ -72,8 +77,8 @@ public class ObjectiveSet : Objective
     {
         UnRegisterToObjectivesEvents();
 
-        objectivesNeedToComplete.Clear();
-        objectivesCompleted.Clear();
+        objectivesNeedToComplete = new();
+        objectivesCompleted = new();
 
         TransferFromListToHashsets();
 
@@ -86,7 +91,7 @@ public class ObjectiveSet : Objective
         List<Objective> relevantObjectives = new(objectivesToTrack.Count);
         foreach (Objective obj in objectivesToTrack)
         {
-            if (obj == null) continue;
+            if (obj == null || obj == this) continue;
 
             switch (trackMode)
             {
@@ -133,16 +138,17 @@ public class ObjectiveSet : Objective
 
     private void OnObjectiveStateChanged(Objective objective)
     {
-        if (objectivesNeedToComplete.Contains(objective))
+        if (objective.IsCompleted)
         {
             objectivesNeedToComplete.Remove(objective);
             objectivesCompleted.Add(objective);
         }
-        else if (objectivesCompleted.Contains(objective))
+        else
         {
-            objectivesNeedToComplete.Add(objective);
             objectivesCompleted.Remove(objective);
+            objectivesNeedToComplete.Add(objective);
         }
+
         CheckAndUpdateCompletionStatus();
         OnObjectiveChanged?.Invoke(objective);
     }

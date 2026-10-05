@@ -1,42 +1,21 @@
-using NUnit.Framework;
-using System;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ObjectivesManager : MonoBehaviour
 {  
-    [SerializeField] private ObjectiveSet objSet = null;
-    
+    [SerializeField] private ObjectiveSet objSet;
 
 
-    public void Reset()
+    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+    void OnSceneLoaded(Scene s, LoadSceneMode m) => InitializeLevelObjectives();
+
+    void OnDestroy()
     {
-        InitializeLevelObjectives();
+        if (objSet != null) objSet.OnObjectiveChanged -= OnObjectiveChanged;
     }
-
-
-    void Start()
-    {
-        InitializeLevelObjectives();
-        objSet.OnObjectiveChanged += OnObjectiveChanged;
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnDestroy()
-    {
-        objSet.OnObjectiveChanged -= OnObjectiveChanged;
-    }
-
 
     void OnObjectiveChanged(Objective obj)
     {
@@ -53,25 +32,14 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        InitializeLevelObjectives();
-    }
 
-    private void InitializeLevelObjectives()
+    void InitializeLevelObjectives()
     {
         EnsureTrackerExists();
-        Objective[] objectivesArray = FindObjectsByType<Objective>(FindObjectsSortMode.None);
-        List<Objective> SenceObjectives = new ();
-        foreach (Objective obj in objectivesArray)
-        {
-            if (obj != objSet && obj != null)//to ignore the tracker
-            {
-                SenceObjectives.Add(obj);
-            }
-        }
+        objSet.OnObjectiveChanged -= OnObjectiveChanged;
+        objSet.OnObjectiveChanged += OnObjectiveChanged;
         objSet.SetTrackMode(ObjectiveSet.TrackMode.Mandatory_Only);
-        objSet.SetObjectivesList(SenceObjectives);
+        objSet.SetObjectivesList(FindSceneObjectives());
     }
 
     private void EnsureTrackerExists()
@@ -85,4 +53,29 @@ public class ObjectivesManager : MonoBehaviour
             }
         }
     }
+
+    List<Objective> FindSceneObjectives()
+    {
+        List<Objective> result = new();
+        foreach (var o in FindObjectsByType<Objective>(FindObjectsSortMode.None))
+        {
+            if (o != objSet) result.Add(o);
+        }
+        return result;
+    }
+
+
+#if UNITY_EDITOR
+    [ContextMenu("Find Objectives")]
+    void FindObjectivesInEditor()
+    {
+        if (objSet == null) objSet = GetComponent<ObjectiveSet>();
+        if (objSet == null) objSet = UnityEditor.Undo.AddComponent<ObjectiveSet>(gameObject);
+
+        objSet.SetObjectivesList(FindSceneObjectives());
+        UnityEditor.EditorUtility.SetDirty(objSet);
+    }
+#endif
+
+
 }
