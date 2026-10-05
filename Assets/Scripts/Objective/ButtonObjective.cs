@@ -10,12 +10,10 @@ public class ButtonObjective : Objective
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsCompleted) return;
         if (allowedInteractor == null || allowedInteractor == other.gameObject)
         {
             activeInteractors.Add(other.gameObject);
         }
-
         UpdateCompleteStatus();
     }
 
@@ -23,18 +21,15 @@ public class ButtonObjective : Objective
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (IsCompleted) return;
         if (allowedInteractor == null || allowedInteractor == other.gameObject)
         {
             activeInteractors.Add(other.gameObject);
         }
-
         UpdateCompleteStatus();
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if(!IsCompleted)return;
         if (activeInteractors.Contains(other.gameObject))
         {
             activeInteractors.Remove(other.gameObject);
