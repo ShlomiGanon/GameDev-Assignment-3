@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21b556d20bea3543a33a5c8709d2095, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: Assembly-CSharp::LevelSO
-  <LevelName>k__BackingField: 
-  <SceneName>k__BackingField: 
+  <LevelName>k__BackingField: Level2
+  <SceneName>k__BackingField: Level2
