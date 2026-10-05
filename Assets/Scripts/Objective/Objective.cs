@@ -17,28 +17,27 @@ public class Objective : MonoBehaviour
     [field: SerializeField] public bool TriggerUncompleteOnStart { get; private set; }
 
     //instance events (to be able to add on inspector)
-    [SerializeField] private UnityEvent startEvents;
-    [SerializeField] private UnityEvent completeEvents;
-    [SerializeField] private UnityEvent unCompleteEvents;
-
-    //global objectives events (every insance fire them)
+    [SerializeField] private UnityEvent additionalStartEvent;
+    [SerializeField] private UnityEvent additionalCompleteEvent;
+    [SerializeField] private UnityEvent additionalUnCompleteEvent;
+    //instance events (to be able to add on inspector)
+    public event Action<Objective> StartEvent;
+    public event Action<Objective> CompleteEvent;
+    public event Action<Objective> UnCompleteEvent;
 
     private void Start()
     {
-        SetAsNotCompleted();
         if (TriggerUncompleteOnStart) 
         {
-            unCompleteEvents?.Invoke();
-            ObjectivesEvents.OnObjectiveUncompleted(this);
+            SetUncomplete();
         }
         else
         {
-            startEvents?.Invoke();
-            ObjectivesEvents.OnObjectiveStart(this);
+            SetAsNotCompleted();
+            StartEvent?.Invoke(this);
+            additionalStartEvent?.Invoke();
         }
     }
-
-
 
     private void SetAsCompleted()
     {
@@ -55,16 +54,16 @@ public class Objective : MonoBehaviour
     public void SetComplete()
     {
         SetAsCompleted();
-        completeEvents?.Invoke();
-        ObjectivesEvents.OnObjectiveCompleted(this);
+        CompleteEvent?.Invoke(this);
+        additionalCompleteEvent?.Invoke();
     }
 
 
     public void SetUncomplete()
     {
         SetAsNotCompleted();
-        unCompleteEvents?.Invoke();
-        ObjectivesEvents.OnObjectiveUncompleted(this);
+        UnCompleteEvent?.Invoke(this);
+        additionalUnCompleteEvent?.Invoke();
     }
 
 }
