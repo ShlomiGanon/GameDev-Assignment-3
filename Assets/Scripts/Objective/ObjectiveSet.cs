@@ -7,7 +7,7 @@ public class ObjectiveSet : Objective
     [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
     private HashSet<Objective> objectivesNeedToComplete = new();
     private HashSet<Objective> objectivesCompleted = new();
-    public event Action<Objective> OnObjectiveChanged;
+    public event Action<ObjectiveSet> OnObjectiveChanged;
     public enum TrackMode
     {
         All,
