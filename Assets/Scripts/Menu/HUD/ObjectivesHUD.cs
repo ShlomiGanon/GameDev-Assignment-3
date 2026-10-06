@@ -1,45 +1,50 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class ObjectivesHUD : MonoBehaviour
 {
-    [SerializeField] private ObjectiveSet objectiveSet;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI objectivesText;
 
-    private TextMeshProUGUI textMeshPro;
-
-    private int totalObjectives;
-    private int completedObjectives;
-
+    [Header("Colors")]
     [SerializeField] private Color finishColor;
     [SerializeField] private Color amountUpColor;
     [SerializeField] private Color amountDownColor;
     [SerializeField] private Color emptyColor;
-    private void Start()
+
+    private void Awake()
     {
-        if(objectiveSet == null)
+        if (objectivesText == null)
         {
-            Debug.LogError("you have not assing ObjectiveSet!");
-        }
-        else
-        {
-            objectiveSet.OnObjectiveChanged += OnObjectiveChanged;
+            objectivesText = GetComponent<TextMeshProUGUI>();
         }
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        if (objectiveSet != null)
-        {
-            objectiveSet.OnObjectiveChanged -= OnObjectiveChanged;
-        }
+        ObjectivesEvents.ObjectivesManagerProgressChanged += OnObjectivesManagerProgressChanged;
     }
 
-    private void OnObjectiveChanged(ObjectiveSet objective)
+    private void OnDisable()
     {
-        if(objective != null && objective == objectiveSet)
-        {
+        ObjectivesEvents.ObjectivesManagerProgressChanged -= OnObjectivesManagerProgressChanged;
+    }
 
+    private void OnObjectivesManagerProgressChanged(ObjectiveSet changedSet)
+    {
+        RefreshText(changedSet);
+    }
+
+    private void RefreshText(ObjectiveSet changedSet)
+    {
+        if (objectivesText == null || changedSet == null)
+        {
+            return;
         }
+
+        int completedCount = changedSet.GetCompleteCount();
+        int totalCount = completedCount + changedSet.GetNeedToCompleteCount();
+
+        objectivesText.text = $"Objectives: {completedCount} / {totalCount}";
     }
 }
