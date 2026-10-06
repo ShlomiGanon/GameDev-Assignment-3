@@ -55,4 +55,5 @@ public class Objective : MonoBehaviour
         UnCompleteEvent?.Invoke(this);
         additionalUnCompleteEvent?.Invoke();
     }
+
 }
