@@ -97,7 +97,7 @@ public class TimerObjective : Objective
             SetComplete();
         }
 
-        //invoke the time is finish (0 - seconds left)
+        //invoke the timer is finish (0.0 seconds left)
         additionalTickEvent?.Invoke(0f);
         TickEvent?.Invoke(this, 0f);
 
