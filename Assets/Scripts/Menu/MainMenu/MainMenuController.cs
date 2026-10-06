@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] Button startButton;
-    private string playSceneName = "Level1";
+    [SerializeField] string playSceneName = "Level1";
 
     private void OnStartGameClicked()
     {
+        GameStateEvents.ButtonPressed?.Invoke(GameStateButtonTransition.Start);
         SceneManager.LoadScene(playSceneName);
     }
     private void OnEnable()
