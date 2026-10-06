@@ -20,10 +20,7 @@ public class GameState : MonoBehaviour
         {
             transition.ResetParameters();
         }
-        Debug.Log(
-        $"State: {name} | StateSO: {StateRules.name} | " +
-        $"Manager: {GetComponentInParent<GameStateManager>().GetInstanceID()}"
-);
+
         GameStateEvents.StateUpdated?.Invoke(StateRules);
     }
 

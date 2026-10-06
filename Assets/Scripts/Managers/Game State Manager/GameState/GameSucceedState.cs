@@ -8,6 +8,7 @@ public class GameSucceedState : GameState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Befor load mainmenu");
         SceneManager.LoadScene(loadSceneName);
     }
 }

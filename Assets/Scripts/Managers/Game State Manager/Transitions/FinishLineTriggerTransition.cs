@@ -16,7 +16,6 @@ public class FinishLineTriggerTransition : TransitionBase
 
     private void CanTransitionUpdate()
     {
-        Debug.Log("FINISH LINE EVENT RECEIVED");
         canTransition = true;
     }
 
@@ -27,9 +26,6 @@ public class FinishLineTriggerTransition : TransitionBase
 
     public override bool ShouldTransition()
     {
-        if (canTransition)
-            Debug.Log("FINISH LINE TRANSITION = TRUE");
-
         bool shouldTransition = canTransition;
         ResetParameters();
         return shouldTransition;

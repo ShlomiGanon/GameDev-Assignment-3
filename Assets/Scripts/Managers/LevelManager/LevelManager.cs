@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentLevel = levelsData.Find(level => level.SceneName == scene.name);
+        Debug.Log($"{currentLevel}");
     }
 
     private LevelSO GetNextLevel()
