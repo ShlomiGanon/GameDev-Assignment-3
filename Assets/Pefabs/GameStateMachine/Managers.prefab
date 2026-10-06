@@ -45,6 +45,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HasNextLevelTransition
   <TargetState>k__BackingField: {fileID: 757671587608378608}
+--- !u!1 &203159733331964061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4201962609158024669}
+  - component: {fileID: 7687321276413145832}
+  m_Layer: 0
+  m_Name: RestartedLevelTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4201962609158024669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203159733331964061}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8325257665888560208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7687321276413145832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203159733331964061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558273ccc66619447af3ac42be6b33a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RestartedLevelTransition
+  <TargetState>k__BackingField: {fileID: 7715279034975389093}
 --- !u!1 &668518987775175783
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +366,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d355f42132ac399498113e02f9fde776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers
+--- !u!1 &3949603971017203611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4220421754718020398}
+  - component: {fileID: 7796883905882758528}
+  m_Layer: 0
+  m_Name: FailedStateTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4220421754718020398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949603971017203611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1953494835531509112}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7796883905882758528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3949603971017203611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c13cc4a1a89ba246af1f63e25d26c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FailedStateTransition
+  <TargetState>k__BackingField: {fileID: 3440055785452533443}
 --- !u!1 &4045492724930370031
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,8 +824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelsData:
   - {fileID: 11400000, guid: 1284f8557e1da804f9ccaa9473541349, type: 2}
-  - {fileID: 11400000, guid: ff6fdd290b22feb43a95401b38a437d5, type: 2}
-  - {fileID: 11400000, guid: 50374fd8cb013b5448467efc0825136d, type: 2}
 --- !u!1 &6490901583524705409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1230,7 @@ Transform:
   - {fileID: 1390169712408885021}
   - {fileID: 3469702348070218323}
   - {fileID: 8047113648242511215}
+  - {fileID: 4220421754718020398}
   m_Father: {fileID: 369510337242280854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7715279034975389093
@@ -1157,6 +1246,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameState
   <StateRules>k__BackingField: {fileID: 11400000, guid: 654717a23baf294408a20fb31a3b40bf, type: 2}
+--- !u!1 &8657931834546810392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8325257665888560208}
+  - component: {fileID: 3440055785452533443}
+  m_Layer: 0
+  m_Name: FailedState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8325257665888560208
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657931834546810392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4201962609158024669}
+  m_Father: {fileID: 369510337242280854}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3440055785452533443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657931834546810392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e8d06d51a85474eb2392bb939bbc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FailedState
+  <StateRules>k__BackingField: {fileID: 11400000, guid: 0137db411e1b5944394fead2404f547b, type: 2}
 --- !u!1 &8676334032055424356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,6 +1330,7 @@ Transform:
   - {fileID: 3689580597429283823}
   - {fileID: 4912918466380693951}
   - {fileID: 277539444287779034}
+  - {fileID: 8325257665888560208}
   m_Father: {fileID: 3297393859679677655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1496144407794042976
@@ -1211,7 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   <CurrentState>k__BackingField: {fileID: 0}
   <PreviousState>k__BackingField: {fileID: 0}
-  defaultState: {fileID: 8059321631952759688}
+  defaultState: {fileID: 7715279034975389093}
 --- !u!1 &8754706511827558658
 GameObject:
   m_ObjectHideFlags: 0
