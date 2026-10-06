@@ -45,9 +45,12 @@ public class GameStateManager : MonoBehaviour
 
     private void ChangeState(GameState newState)
     {
+        Debug.Log($"CHANGE STATE START: {CurrentState?.name} -> {newState?.name}");
+
         if (newState == null)
         {
             Debug.LogError($"{nameof(newState)} was null");
+            return;
         }
 
         if (newState == CurrentState)
@@ -56,7 +59,10 @@ public class GameStateManager : MonoBehaviour
         justChangedState = true;
         PreviousState = CurrentState;
         CurrentState = newState;
+
+        Debug.Log($"BEFORE ENTER: {CurrentState.name}");
         CurrentState.Enter();
+        Debug.Log($"AFTER ENTER: {CurrentState.name}");
     }
 
     private void Update()
