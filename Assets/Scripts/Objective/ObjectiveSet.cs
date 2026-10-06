@@ -7,7 +7,7 @@ public class ObjectiveSet : Objective
     [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
     private HashSet<Objective> objectivesNeedToComplete = new();
     private HashSet<Objective> objectivesCompleted = new();
-    public event Action<Objective> OnObjectiveChanged;
+    public event Action<ObjectiveSet> OnObjectiveChanged;
     public enum TrackMode
     {
         All,
@@ -163,5 +163,17 @@ public class ObjectiveSet : Objective
             if (newStatus) SetComplete();
             else SetUncomplete();
         }
+    }
+
+    public int GetNeedToCompleteCount()
+    {
+        if (objectivesNeedToComplete == null) return 0;
+        return objectivesNeedToComplete.Count;
+    }
+
+    public int GetCompleteCount()
+    {
+        if (objectivesCompleted == null) return 0;
+        return objectivesCompleted.Count;
     }
 }

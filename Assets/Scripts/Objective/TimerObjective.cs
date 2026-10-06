@@ -12,7 +12,7 @@ public class TimerObjective : Objective
     [SerializeField] protected Coroutine coroutine;
 
     [SerializeField] private UnityEvent<float> additionalTickEvent;
-    public event Action<Objective, float> TickEvent;
+    public event Action<TimerObjective, float> TickEvent;
 
     private bool isInitialized = false;
 
