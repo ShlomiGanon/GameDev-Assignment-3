@@ -77,7 +77,7 @@ public class ObjectivesManager : MonoBehaviour
 
     private void ReportInnerState()
     {
-        ObjectivesEvents.OnObjectivesManagerUpdatedObjectiveSet(objSet);
+        ObjectivesEvents.OnObjectivesManagerProgressChanged(objSet);
     }
 
     private void InitializeLevelObjectives()
