@@ -13,8 +13,9 @@ public class GameStateManager : MonoBehaviour
 
     bool justChangedState = false;
 
-    private void Awake()
+    private void Start()
     {
+        Debug.Log($"GSM Awake: {GetInstanceID()} | Scene: {gameObject.scene.name}");
         states.AddRange(GetComponentsInChildren<GameState>());
 
         GameStateEvents.GetCurrentState += OnGetCurrentState;

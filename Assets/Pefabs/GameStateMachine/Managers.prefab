@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33620c67b3fce6448bc7b42a04c09c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EpsilonTransition
-  <TargetState>k__BackingField: {fileID: 4552803163453959567}
+  <TargetState>k__BackingField: {fileID: 8059321631952759688}
 --- !u!1 &3877287903524426519
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ff25d06a106d84790238021ebb91f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HasNoNextLevelTransition
-  <TargetState>k__BackingField: {fileID: 6808881257087648406}
+  <TargetState>k__BackingField: {fileID: 3128087270809136529}
 --- !u!1 &6085780282941226679
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3689580597429283823}
-  - component: {fileID: 6808881257087648406}
+  - component: {fileID: 3128087270809136529}
   m_Layer: 0
   m_Name: GameSucceedState
   m_TagString: Untagged
@@ -999,7 +999,7 @@ Transform:
   - {fileID: 5024228552829029868}
   m_Father: {fileID: 369510337242280854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6808881257087648406
+--- !u!114 &3128087270809136529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1008,10 +1008,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7525284364524435692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
+  m_Script: {fileID: 11500000, guid: 79badeb3c12e87f47b83cf4f4cfdb7b1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
+  m_EditorClassIdentifier: Assembly-CSharp::GameSucceedState
   <StateRules>k__BackingField: {fileID: 11400000, guid: 95a6be46f512a0f4692dbdd43f2833ee, type: 2}
+  loadSceneName: MainMenu
 --- !u!1 &7753165161576902951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   <CurrentState>k__BackingField: {fileID: 0}
   <PreviousState>k__BackingField: {fileID: 0}
-  defaultState: {fileID: 7715279034975389093}
+  defaultState: {fileID: 8059321631952759688}
 --- !u!1 &8754706511827558658
 GameObject:
   m_ObjectHideFlags: 0
