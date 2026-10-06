@@ -779,6 +779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7994927855514247571, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+      propertyPath: <TargetState>k__BackingField
+      value: 
+      objectReference: {fileID: 1716793175}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
