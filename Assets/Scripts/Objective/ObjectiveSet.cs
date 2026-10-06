@@ -164,4 +164,16 @@ public class ObjectiveSet : Objective
             else SetUncomplete();
         }
     }
+
+    public int GetNeedToCompleteCount()
+    {
+        if (objectivesNeedToComplete == null) return 0;
+        return objectivesNeedToComplete.Count;
+    }
+
+    public int GetCompleteCount()
+    {
+        if (objectivesCompleted == null) return 0;
+        return objectivesCompleted.Count;
+    }
 }
