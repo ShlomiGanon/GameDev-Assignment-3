@@ -8,6 +8,11 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelSO> levelsData;
     private LevelSO currentLevel;
 
+    private void Start()
+    {
+        UpdateCurrentLevel(SceneManager.GetActiveScene());
+    }
+
     private bool HasNextLevel()
     {
         int currentLevelIndex = levelsData.IndexOf(currentLevel);
@@ -16,8 +21,12 @@ public class LevelManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        UpdateCurrentLevel(scene);
+    }
+
+    private void UpdateCurrentLevel(Scene scene)
+    {
         currentLevel = levelsData.Find(level => level.SceneName == scene.name);
-        Debug.Log($"{currentLevel}");
     }
 
     private LevelSO GetNextLevel()
