@@ -20,13 +20,18 @@ public class LevelDoor : MonoBehaviour
         spriteRenderer.sprite = closedSprite;
     }
 
-    private void OpenDoor()
+    private void CanOpenFinalGate(StateSO state)
     {
-        if (isOpen)
-            return;
-
-        isOpen = true;
-        spriteRenderer.sprite = openedSprite;
+        if (state.CanOpenFinalGate)
+        {
+            spriteRenderer.sprite = openedSprite;
+            isOpen = true;
+        }
+        else
+        {
+            spriteRenderer.sprite = closedSprite;
+            isOpen = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,11 +44,11 @@ public class LevelDoor : MonoBehaviour
 
     private void OnEnable()
     {
-        ObjectivesEvents.ObjectivesCompleted += OpenDoor;
+        GameStateEvents.StateUpdated += CanOpenFinalGate;
     }
 
     private void OnDisable()
     {
-        ObjectivesEvents.ObjectivesCompleted -= OpenDoor;
+        GameStateEvents.StateUpdated -= CanOpenFinalGate;
     }
 }
