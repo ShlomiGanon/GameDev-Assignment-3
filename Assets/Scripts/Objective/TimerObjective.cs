@@ -12,7 +12,7 @@ public class TimerObjective : Objective
     [SerializeField] protected Coroutine coroutine;
 
     [SerializeField] private UnityEvent<float> additionalTickEvent;
-    public event Action<Objective, float> TickEvent;
+    public event Action<TimerObjective, float> TickEvent;
 
     private bool isInitialized = false;
 
@@ -97,7 +97,7 @@ public class TimerObjective : Objective
             SetComplete();
         }
 
-        //invoke the time is finish (0 - seconds left)
+        //invoke the timer is finish (0.0 seconds left)
         additionalTickEvent?.Invoke(0f);
         TickEvent?.Invoke(this, 0f);
 

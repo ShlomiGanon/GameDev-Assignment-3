@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
+namespace MyGame
+{
 public class CharacterController : MonoBehaviour
 {
     private CharacterMovement characterMovement;
@@ -151,4 +149,5 @@ public class CharacterController : MonoBehaviour
             DisableController();
         }
     }
+}
 }

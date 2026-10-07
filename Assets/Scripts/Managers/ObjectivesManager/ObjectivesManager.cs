@@ -1,44 +1,93 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ObjectivesManager : MonoBehaviour
-{  
+{
     [SerializeField] private ObjectiveSet objSet;
+    [SerializeField] private bool reportStateOnStart = true;
 
+    private bool lastReportedCompleted;
 
-    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
-    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
-    void OnSceneLoaded(Scene s, LoadSceneMode m) => InitializeLevelObjectives();
-
-    void OnDestroy()
+    private void OnEnable()
     {
-        if (objSet != null) objSet.OnObjectiveChanged -= OnObjectiveChanged;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnObjectiveChanged(Objective obj)
+    private void Start()
     {
-        if (obj == objSet)
+        if (reportStateOnStart && objSet != null)
         {
-            if(obj.IsCompleted)
-            {
-                ObjectivesEvents.OnObjectivesCompleted();
-            }
-            else
-            {
-                ObjectivesEvents.OnObjectivesIncompleted();
-            }
+            ReportCompletionState();
+            ReportInnerState();
         }
     }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-    void InitializeLevelObjectives()
+    private void OnDestroy()
+    {
+        if (objSet != null)
+        {
+            objSet.OnObjectiveSetChanged -= OnObjectiveChanged;
+            objSet.OnInnerObjectiveChanged -= OnInnerObjectiveChanged;
+        }
+    }
+
+    private void OnSceneLoaded(Scene s, LoadSceneMode m)
+    {
+        InitializeLevelObjectives();
+    }
+
+    private void OnObjectiveChanged(Objective obj)
+    {
+        if (obj == objSet)
+        {
+            ReportCompletionState();
+        }
+    }
+
+    private void OnInnerObjectiveChanged(Objective obj)
+    {
+        ReportInnerState();
+    }
+
+    private void ReportCompletionState()
+    {
+        //never report the same completion state twice in a row.
+        if (objSet.IsCompleted == lastReportedCompleted)
+        {
+            return;
+        }
+
+        lastReportedCompleted = objSet.IsCompleted;
+
+        if (lastReportedCompleted)
+        {
+            ObjectivesEvents.OnObjectivesCompleted();
+        }
+        else
+        {
+            ObjectivesEvents.OnObjectivesIncompleted();
+        }
+    }
+
+    private void ReportInnerState()
+    {
+        ObjectivesEvents.OnObjectivesManagerProgressChanged(objSet);
+    }
+
+    private void InitializeLevelObjectives()
     {
         EnsureTrackerExists();
-        objSet.OnObjectiveChanged -= OnObjectiveChanged;
-        objSet.OnObjectiveChanged += OnObjectiveChanged;
-        objSet.SetTrackMode(ObjectiveSet.TrackMode.Mandatory_Only);
+        objSet.OnObjectiveSetChanged -= OnObjectiveChanged;
+        objSet.OnObjectiveSetChanged += OnObjectiveChanged;
+        objSet.OnInnerObjectiveChanged -= OnInnerObjectiveChanged;
+        objSet.OnInnerObjectiveChanged += OnInnerObjectiveChanged;
+        objSet.SetTrackMode(ObjectiveSet.ObjectiveFilterMode.MandatoryOnly);
         objSet.SetObjectivesList(FindSceneObjectives());
     }
 
@@ -54,7 +103,7 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
-    List<Objective> FindSceneObjectives()
+    private List<Objective> FindSceneObjectives()
     {
         List<Objective> result = new();
         foreach (var o in FindObjectsByType<Objective>(FindObjectsSortMode.None))
@@ -64,10 +113,9 @@ public class ObjectivesManager : MonoBehaviour
         return result;
     }
 
-
 #if UNITY_EDITOR
     [ContextMenu("Find Objectives")]
-    void FindObjectivesInEditor()
+    private void FindObjectivesInEditor()
     {
         if (objSet == null) objSet = GetComponent<ObjectiveSet>();
         if (objSet == null) objSet = UnityEditor.Undo.AddComponent<ObjectiveSet>(gameObject);
@@ -76,6 +124,4 @@ public class ObjectivesManager : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(objSet);
     }
 #endif
-
-
 }
