@@ -91,6 +91,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         LevelEvents.loadNextLevel -= LoadNextLevel;
         LevelEvents.checkForNextLevel -= CheckForNextLevel;
+        LevelEvents.restartLevelEvent -= RestartLevel;
 
     }
 }
