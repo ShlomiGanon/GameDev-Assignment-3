@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: Assembly-CSharp::LevelSO
   <LevelName>k__BackingField: Level1
-  <SceneName>k__BackingField: Level1
+  <SceneName>k__BackingField: AnimationTestScene

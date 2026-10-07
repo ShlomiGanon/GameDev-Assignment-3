@@ -13,30 +13,18 @@ public class GameStateManager : MonoBehaviour
 
     bool justChangedState = false;
 
-    private void Awake()
+    private void Start()
     {
         states.AddRange(GetComponentsInChildren<GameState>());
 
         GameStateEvents.GetCurrentState += OnGetCurrentState;
-        SceneManager.sceneLoaded += OnSceneLoaded;
 
         if(CurrentState == null)
         {
             ChangeState(defaultState);
         }
     }
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if(CurrentState == null)
-        {
-            CurrentState = defaultState;
-            ChangeState(CurrentState);
-        }
-        else
-        {
-            CurrentState.Enter();
-        }
-    }
+    
     private StateSO OnGetCurrentState()
     {
         return CurrentState.StateRules;
@@ -47,6 +35,7 @@ public class GameStateManager : MonoBehaviour
         if (newState == null)
         {
             Debug.LogError($"{nameof(newState)} was null");
+            return;
         }
 
         if (newState == CurrentState)
@@ -56,6 +45,7 @@ public class GameStateManager : MonoBehaviour
         PreviousState = CurrentState;
         CurrentState = newState;
         CurrentState.Enter();
+
     }
 
     private void Update()
@@ -81,6 +71,5 @@ public class GameStateManager : MonoBehaviour
     private void OnDestroy()
     {
         GameStateEvents.GetCurrentState -= OnGetCurrentState;
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

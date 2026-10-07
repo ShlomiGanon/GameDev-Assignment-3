@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class LevelEndState : GameState
+public class FailedState : GameState
 {
     public override void Enter()
     {
         base.Enter();
 
-        LevelEvents.OnCheckForNextLevel();
+        LevelEvents.OnRestartLevel();
     }
 }

@@ -11,11 +11,11 @@ public class ObjectivesStatusChangedTransition : TransitionBase
     {
         if(trigger == ObjectivesStatesTransition.ObjectivesCompleted)
         {
-            //ObjectivesEvents.objectivesCompleted += OnObjectivesCompleted;
+            ObjectivesEvents.ObjectivesCompleted += OnObjectivesCompleted;
         }
         else if(trigger == ObjectivesStatesTransition.ObjectivesUncompleted)
         {
-            //ObjectivesEvents.objectivesIncompleted += OnObjectivesCompleted;
+            ObjectivesEvents.ObjectivesIncompleted += OnObjectivesCompleted;
         }
     }
 

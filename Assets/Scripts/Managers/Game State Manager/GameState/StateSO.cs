@@ -6,5 +6,6 @@ public class StateSO : ScriptableObject
     [field: SerializeField] public bool CanMove { get; private set; }
     [field: SerializeField] public bool ShowMenu { get; private set; }
     [field: SerializeField] public bool CanOpenFinalGate { get; private set; }
+    [field: SerializeField] public bool CanDialogue { get; private set; }
 
 }

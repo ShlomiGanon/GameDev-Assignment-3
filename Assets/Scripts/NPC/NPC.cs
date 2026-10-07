@@ -16,9 +16,11 @@ public class NPC : MonoBehaviour
     private bool isTalking;
     private bool isTyping = false;
     private bool toNextMessage = false;
+    private bool canDialogue = false;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isTalking)
+        if (other.CompareTag("Player") && !isTalking && canDialogue)
         {
             DialogueEvents.OnDialogueStart();
             StartCoroutine(PlayDialogue());
@@ -37,6 +39,10 @@ public class NPC : MonoBehaviour
         {
             toNextMessage = true;
         }
+    }
+    private void OnStateUpdate(StateSO state)
+    {
+        canDialogue = state.CanDialogue;
     }
     private IEnumerator PlayDialogue()
     {
@@ -82,6 +88,16 @@ public class NPC : MonoBehaviour
         dialoguePanel.SetActive(false);
 
         isTalking = false;
+    }
+
+    private void OnEnable()
+    {
+        GameStateEvents.StateUpdated += OnStateUpdate;
+    }
+
+    private void OnDisable()
+    {
+        GameStateEvents.StateUpdated += OnStateUpdate;
     }
 
 }
