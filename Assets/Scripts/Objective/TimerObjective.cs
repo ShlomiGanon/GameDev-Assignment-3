@@ -5,28 +5,36 @@ using UnityEngine.Events;
 
 public class TimerObjective : Objective
 {
+    [Header("Timer Settings")]
     [SerializeField] private bool isStartPositive = true;
     [SerializeField] protected float startDelaySeconds = 15f;
     [SerializeField] protected float flipInSeconds = 15f;
-    [SerializeField] protected float secondsLeft;
-    [SerializeField] protected Coroutine coroutine;
+    [SerializeField, Min(0.01f)] private float tickIntervalSeconds = 1f;
 
+    [Header("Timer State (Runtime)")]
+    [SerializeField] protected float secondsLeft;
+
+    [Header("Events")]
     [SerializeField] private UnityEvent<float> additionalTickEvent;
+
     public event Action<TimerObjective, float> TickEvent;
 
+    private const float TimerFinishedSeconds = 0f;
+
+    private bool hasStartDelayPassed;
     private bool isInitialized = false;
+    protected Coroutine coroutine;
 
     protected override void Start()
     {
         base.Start();
         isInitialized = true;
-        secondsLeft = flipInSeconds;
         StartTimer();
     }
 
     protected void OnEnable()
     {
-        if (isInitialized && secondsLeft > 0)
+        if (isInitialized && (!hasStartDelayPassed || secondsLeft > TimerFinishedSeconds))
         {
             StartTimer();
         }
@@ -54,11 +62,16 @@ public class TimerObjective : Objective
 
     private IEnumerator StartCount()
     {
-        if (secondsLeft == flipInSeconds)//in the first count only
+        if (!hasStartDelayPassed)
         {
-
             yield return new WaitForSeconds(startDelaySeconds);
-
+            secondsLeft = flipInSeconds;
+            hasStartDelayPassed = true;
+            if (IsFail) 
+            {
+                coroutine = null;
+                yield break;
+            }
             if (isStartPositive)
             {
                 SetComplete();
@@ -67,25 +80,30 @@ public class TimerObjective : Objective
             {
                 SetUncomplete();
             }
-
         }
 
 
-        while (secondsLeft > 0)
+        while (secondsLeft > TimerFinishedSeconds && !IsFail)
         {
             additionalTickEvent?.Invoke(secondsLeft);
             TickEvent?.Invoke(this, secondsLeft);
-            if (secondsLeft < 1)
+            if (secondsLeft < tickIntervalSeconds)
             {
                 yield return new WaitForSeconds(secondsLeft);
-                secondsLeft = 0;
+                secondsLeft = TimerFinishedSeconds;
             }
             else
             {
-                secondsLeft--;
-                yield return new WaitForSeconds(1f);//wait one second
+                secondsLeft -= tickIntervalSeconds;
+                yield return new WaitForSeconds(tickIntervalSeconds);
             }
+        }
 
+        if (IsFail)
+        {
+            //if the objective is fail we cant change it state so we stop here
+            coroutine = null;
+            yield break;
         }
 
         if (IsCompleted)
@@ -97,9 +115,8 @@ public class TimerObjective : Objective
             SetComplete();
         }
 
-        //invoke the timer is finish (0.0 seconds left)
-        additionalTickEvent?.Invoke(0f);
-        TickEvent?.Invoke(this, 0f);
+        additionalTickEvent?.Invoke(TimerFinishedSeconds);
+        TickEvent?.Invoke(this, TimerFinishedSeconds);
 
         coroutine = null;
     }
