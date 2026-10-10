@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
   objSet: {fileID: 0}
+  reportStateOnStart: 1
 --- !u!1 &6052126503156715414
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,10 +948,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8141095917407933924}
   - {fileID: 11124045320982570}
   - {fileID: 1539430240404081706}
   - {fileID: 8607778162242080142}
-  - {fileID: 8141095917407933924}
   m_Father: {fileID: 369510337242280854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7727102634227218877
@@ -1509,10 +1510,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4220421754718020398}
   - {fileID: 1390169712408885021}
   - {fileID: 3469702348070218323}
   - {fileID: 8047113648242511215}
-  - {fileID: 4220421754718020398}
   m_Father: {fileID: 369510337242280854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7715279034975389093
