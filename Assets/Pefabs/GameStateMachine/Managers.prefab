@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   <CurrentState>k__BackingField: {fileID: 0}
   <PreviousState>k__BackingField: {fileID: 0}
-  defaultState: {fileID: 7715279034975389093}
+  defaultState: {fileID: 8059321631952759688}
 --- !u!1 &8754706511827558658
 GameObject:
   m_ObjectHideFlags: 0
