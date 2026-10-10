@@ -104,7 +104,7 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
-    private void ReportLevelFailed()
+    public void ReportLevelFailed()
     {
         LevelEvents.OnLevelFailed();
     }
