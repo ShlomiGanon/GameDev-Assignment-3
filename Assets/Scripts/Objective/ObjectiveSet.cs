@@ -13,6 +13,8 @@ public class ObjectiveSet : Objective
 
     [Header("Tracking")]
     [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
+
+    [Header("Filtering")]
     [SerializeField] private ObjectiveFilterMode filterMode = ObjectiveFilterMode.All;
 
     private readonly HashSet<Objective> pendingObjectives = new();
@@ -25,6 +27,7 @@ public class ObjectiveSet : Objective
     {
         CompleteEvent += HandleSelfStateChanged;
         UnCompleteEvent += HandleSelfStateChanged;
+        FailEvent += HandleSelfStateChanged;
         RebuildTracking();
     }
 
@@ -33,6 +36,7 @@ public class ObjectiveSet : Objective
         UnsubscribeFromTrackedObjectives();
         CompleteEvent -= HandleSelfStateChanged;
         UnCompleteEvent -= HandleSelfStateChanged;
+        FailEvent -= HandleSelfStateChanged;
     }
 
     public void SetObjectivesList(List<Objective> newObjectives)
@@ -219,12 +223,14 @@ public class ObjectiveSet : Objective
     {
         objective.CompleteEvent += HandleTrackedObjectiveStateChanged;
         objective.UnCompleteEvent += HandleTrackedObjectiveStateChanged;
+        objective.FailEvent += HandleTrackedObjectiveStateChanged;
     }
 
     private void UnsubscribeFromObjective(Objective objective)
     {
         objective.CompleteEvent -= HandleTrackedObjectiveStateChanged;
         objective.UnCompleteEvent -= HandleTrackedObjectiveStateChanged;
+        objective.FailEvent -= HandleTrackedObjectiveStateChanged;
     }
 
     private void HandleSelfStateChanged(Objective changedObjective)
@@ -244,8 +250,12 @@ public class ObjectiveSet : Objective
             completedObjectives.Remove(changedObjective);
             pendingObjectives.Add(changedObjective);
         }
-
         OnInnerObjectiveChanged?.Invoke(changedObjective);
+        if (changedObjective.IsFail)
+        {
+            SetFail();
+            return;
+        }
         CheckAndUpdateCompletionStatus();
     }
 }
