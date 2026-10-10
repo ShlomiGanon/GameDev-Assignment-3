@@ -33,13 +33,13 @@ public class PauseMenuController : MonoBehaviour
 
     private void HideMenu()
     {
-        pauseMenuPanel.SetActive(false);
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
     private void ShowMenu()
     {
-        pauseMenuPanel.SetActive(true);
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -58,16 +58,17 @@ public class PauseMenuController : MonoBehaviour
     private void OnEnable()
     {
         GameStateEvents.StateUpdated += OnStateUpdated;
-        continueButton.onClick.AddListener(OnContinueClicked);
-        restartButton.onClick.AddListener(OnRestartClicked);
-        backToMenuButton.onClick.AddListener(OnMenuClicked);
+        if (continueButton != null) continueButton.onClick.AddListener(OnContinueClicked);
+        if (restartButton != null) restartButton.onClick.AddListener(OnRestartClicked);
+        if (backToMenuButton != null) backToMenuButton.onClick.AddListener(OnMenuClicked);
     }
 
     private void OnDisable()
     {
         GameStateEvents.StateUpdated -= OnStateUpdated;
-        continueButton.onClick.RemoveListener(OnContinueClicked);
-        restartButton.onClick.RemoveListener(OnRestartClicked);
-        backToMenuButton.onClick.RemoveListener(OnMenuClicked);
+        if (continueButton != null) continueButton.onClick.RemoveListener(OnContinueClicked);
+        if (restartButton != null) restartButton.onClick.RemoveListener(OnRestartClicked);
+        if (backToMenuButton != null) backToMenuButton.onClick.RemoveListener(OnMenuClicked);
+        Time.timeScale = 1f;//to continue if the scene was destroyed
     }
 }
