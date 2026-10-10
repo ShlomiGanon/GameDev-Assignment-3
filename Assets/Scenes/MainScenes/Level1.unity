@@ -17953,6 +17953,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnDialogueButtonClicked
       objectReference: {fileID: 0}
+    - target: {fileID: 7330288093104465505, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9060703213654747294, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
       propertyPath: m_Name
       value: DialogueBoxUI
