@@ -4,5 +4,6 @@ public enum GameStateButtonTransition
 {
     Start,
     Resume,
-    Restart
+    Restart,
+    BackToMenu
 }
