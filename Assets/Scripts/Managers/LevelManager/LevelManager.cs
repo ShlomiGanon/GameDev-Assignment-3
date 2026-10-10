@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
     {
         isRestarting = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("The level is restarted.");
     }
 
     private LevelSO GetNextLevel()
@@ -93,5 +94,11 @@ public class LevelManager : MonoBehaviour
         LevelEvents.checkForNextLevel -= CheckForNextLevel;
         LevelEvents.restartLevelEvent -= RestartLevel;
 
+    }
+
+    public void CallOnOnLevelFailed()
+    {
+        Debug.Log("call the event");
+        LevelEvents.OnLevelFailed();
     }
 }

@@ -481,11 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed553f2c5a417149a00934ff1fba464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPC
---- !u!4 &755907708 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8283319550679987340, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 806403882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &806403882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -494,10 +489,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1496144407794042976, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: defaultState
-      value: 
-      objectReference: {fileID: 806403883}
     - target: {fileID: 3297393859679677655, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.61262
@@ -542,29 +533,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 8380679826154836120, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: levelsData.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8283319550679987340, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1701943057}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
---- !u!114 &806403883 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7715279034975389093, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 806403882}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!114 &892246006 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2796799133276811576, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
@@ -697,17 +670,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1152658240 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4552803163453959567, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 806403882}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!114 &1176368013 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4556223891026815818, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
@@ -809,53 +771,6 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!1 &1701943056
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1701943057}
-  - component: {fileID: 1701943058}
-  m_Layer: 0
-  m_Name: PausePressedTransition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1701943057
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701943056}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 755907708}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1701943058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701943056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8a34d5c409e4746b104c599afb41d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PausePressedTransition
-  <TargetState>k__BackingField: {fileID: 1152658240}
-  menuSceneNames:
-  - MainMenu
 --- !u!1 &1825121655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,4 +1342,3 @@ SceneRoots:
   - {fileID: 1619487444027995841}
   - {fileID: 551000826}
   - {fileID: 806403882}
-  - {fileID: 1946087075}
