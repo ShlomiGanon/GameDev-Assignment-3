@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class ButtonObjective : Objective
 {
+    [Header("Interaction")]
     [SerializeField] private GameObject allowedInteractor;
     //(allowedInteractor == null) -> any touch can active the button
     //(allowedInteractor != null) -> only the touch from this gameobject can active the button
-    private readonly HashSet<Collider2D> activeColliders = new();
+
+    [Header("Performance")]
     [SerializeField, Min(1)] private int skippingFrames = 100;
+
+    private readonly HashSet<Collider2D> activeColliders = new();
     private int currentFrame = 0;
 
     private void OnDisable()
     {
         // Unity won't call OnCollisionExit2D for a disabled button, so clear manually.
+        // We don't update the complete status here, so disabling the button can never fail or uncomplete it.
         activeColliders.Clear();
-
-        // OnDisable also runs when the scene unloads or Play mode stops.
-        // Other objects may already be destroyed, so don't fire events then.
-        if (gameObject.scene.isLoaded) UpdateCompleteStatus();
     }
 
     private void Update()

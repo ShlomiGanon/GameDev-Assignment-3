@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class ObjectivesManager : MonoBehaviour
 {
-    [SerializeField] private ObjectiveSet objSet;
     [SerializeField] private bool reportStateOnStart = true;
 
+    private ObjectiveSet objSet;
     private bool lastReportedCompleted;
 
     private void OnEnable()
@@ -16,7 +16,12 @@ public class ObjectivesManager : MonoBehaviour
 
     private void Start()
     {
-        if (reportStateOnStart && objSet != null)
+        if (objSet == null)
+        {
+            InitializeLevelObjectives();
+        }
+
+        if (reportStateOnStart)
         {
             ReportCompletionState();
             ReportInnerState();
@@ -30,6 +35,68 @@ public class ObjectivesManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        UnsubscribeFromObjectiveSet();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        InitializeLevelObjectives();
+        ReportInnerState();
+    }
+
+    private void OnObjectiveChanged(Objective obj)
+    {
+        if (obj != objSet)
+        {
+            return;
+        }
+
+        if (objSet.IsFail)
+        {
+            ReportLevelFailed();
+            return;
+        }
+
+        ReportCompletionState();
+    }
+
+    private void OnInnerObjectiveChanged(Objective obj)
+    {
+        ReportInnerState();
+    }
+
+    private void InitializeLevelObjectives()
+    {
+        DestroyObjectiveSet();
+        CreateObjectiveSet();
+
+        lastReportedCompleted = false;
+
+        objSet.SetTrackMode(ObjectiveSet.ObjectiveFilterMode.MandatoryOnly);
+        objSet.SetObjectivesList(FindSceneObjectives());
+    }
+
+    private void CreateObjectiveSet()
+    {
+        objSet = gameObject.AddComponent<ObjectiveSet>();
+        objSet.OnObjectiveSetChanged += OnObjectiveChanged;
+        objSet.OnInnerObjectiveChanged += OnInnerObjectiveChanged;
+    }
+
+    private void DestroyObjectiveSet()
+    {
+        if (objSet == null)
+        {
+            return;
+        }
+
+        UnsubscribeFromObjectiveSet();
+        Destroy(objSet);
+        objSet = null;
+    }
+
+    private void UnsubscribeFromObjectiveSet()
+    {
         if (objSet != null)
         {
             objSet.OnObjectiveSetChanged -= OnObjectiveChanged;
@@ -37,22 +104,9 @@ public class ObjectivesManager : MonoBehaviour
         }
     }
 
-    private void OnSceneLoaded(Scene s, LoadSceneMode m)
+    public void ReportLevelFailed()
     {
-        InitializeLevelObjectives();
-    }
-
-    private void OnObjectiveChanged(Objective obj)
-    {
-        if (obj == objSet)
-        {
-            ReportCompletionState();
-        }
-    }
-
-    private void OnInnerObjectiveChanged(Objective obj)
-    {
-        ReportInnerState();
+        LevelEvents.OnLevelFailed();
     }
 
     private void ReportCompletionState()
@@ -80,48 +134,17 @@ public class ObjectivesManager : MonoBehaviour
         ObjectivesEvents.OnObjectivesManagerProgressChanged(objSet);
     }
 
-    private void InitializeLevelObjectives()
-    {
-        EnsureTrackerExists();
-        objSet.OnObjectiveSetChanged -= OnObjectiveChanged;
-        objSet.OnObjectiveSetChanged += OnObjectiveChanged;
-        objSet.OnInnerObjectiveChanged -= OnInnerObjectiveChanged;
-        objSet.OnInnerObjectiveChanged += OnInnerObjectiveChanged;
-        objSet.SetTrackMode(ObjectiveSet.ObjectiveFilterMode.MandatoryOnly);
-        objSet.SetObjectivesList(FindSceneObjectives());
-    }
-
-    private void EnsureTrackerExists()
-    {
-        if (objSet == null)
-        {
-            objSet = GetComponent<ObjectiveSet>();
-            if (objSet == null)
-            {
-                objSet = gameObject.AddComponent<ObjectiveSet>();
-            }
-        }
-    }
-
     private List<Objective> FindSceneObjectives()
     {
         List<Objective> result = new();
-        foreach (var o in FindObjectsByType<Objective>(FindObjectsSortMode.None))
+        foreach (Objective objective in FindObjectsByType<Objective>(FindObjectsSortMode.None))
         {
-            if (o != objSet) result.Add(o);
+            if (objective is not ObjectiveSet)
+            {
+                result.Add(objective);
+            }
         }
+
         return result;
     }
-
-#if UNITY_EDITOR
-    [ContextMenu("Find Objectives")]
-    private void FindObjectivesInEditor()
-    {
-        if (objSet == null) objSet = GetComponent<ObjectiveSet>();
-        if (objSet == null) objSet = UnityEditor.Undo.AddComponent<ObjectiveSet>(gameObject);
-
-        objSet.SetObjectivesList(FindSceneObjectives());
-        UnityEditor.EditorUtility.SetDirty(objSet);
-    }
-#endif
 }
