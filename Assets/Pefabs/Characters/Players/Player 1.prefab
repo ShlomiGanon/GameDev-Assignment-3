@@ -85,7 +85,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
   data: {fileID: 11400000, guid: 2986b98ced655fc4db89e0a94df3ec28, type: 2}
-  standableTags: []
+  standableTags:
+  - Pushable
+  - PushButton
+  - Ground
 --- !u!114 &2712965986857173109
 MonoBehaviour:
   m_ObjectHideFlags: 0
