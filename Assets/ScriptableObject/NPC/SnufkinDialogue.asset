@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
   m_Name: SnufkinDialogue
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
-  npcName: Little Square
+  npcName: Snufkin
   npcPortrait: {fileID: 21300004, guid: b08e570699f1c8a4f9cc388204aef3bc, type: 3}
   dialogueLines:
   - 'Hi, another traveler seeking a way forward...
