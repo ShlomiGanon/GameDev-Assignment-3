@@ -778,7 +778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0538e41c95dcd8740b6918c63f83e3d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
-  objSet: {fileID: 0}
   reportStateOnStart: 1
 --- !u!1 &6052126503156715414
 GameObject:
@@ -1631,7 +1630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   <CurrentState>k__BackingField: {fileID: 0}
   <PreviousState>k__BackingField: {fileID: 0}
-  defaultState: {fileID: 7715279034975389093}
+  defaultState: {fileID: 8059321631952759688}
 --- !u!1 &8754706511827558658
 GameObject:
   m_ObjectHideFlags: 0
