@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
   startButton: {fileID: 187838852}
-  playSceneName: AnimationTestScene
+  playSceneName: Level1
 --- !u!1 &917373205
 GameObject:
   m_ObjectHideFlags: 0
