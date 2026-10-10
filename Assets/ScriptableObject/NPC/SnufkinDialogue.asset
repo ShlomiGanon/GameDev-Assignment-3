@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
+  m_Name: SnufkinDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: Little Square
+  npcPortrait: {fileID: 21300004, guid: b08e570699f1c8a4f9cc388204aef3bc, type: 3}
+  dialogueLines:
+  - 'Hi, another traveler seeking a way forward...
+
+    The door ahead is sealed,
+    but the answer lies before your eyes.'
+  - Listen carefully, and you may find your way through.
+  - 'Four buttons stand in a row,
+
+    But only three will let you go.
+
+    Three
+    seek weight to light the way,
+
+    One wears the color of life and spring.
+
+    Choose
+    wisely, and the door shall open.'
+  typingSpeed: 0.05
+  messageDelay: 2
