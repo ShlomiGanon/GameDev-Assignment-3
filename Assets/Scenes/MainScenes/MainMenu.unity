@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &95047353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3128087270809136529, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 833948412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79badeb3c12e87f47b83cf4f4cfdb7b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameSucceedState
 --- !u!1 &187838850
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,17 +498,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252920897}
   m_CullTransparentMesh: 1
---- !u!114 &309209733 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8059321631952759688, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 833948412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!1 &582735964
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,14 +731,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1496144407794042976, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: defaultState
-      value: 
-      objectReference: {fileID: 309209733}
-    - target: {fileID: 2376296935557490767, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: <TargetState>k__BackingField
-      value: 
-      objectReference: {fileID: 95047353}
     - target: {fileID: 3297393859679677655, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.05975
@@ -804,14 +774,6 @@ PrefabInstance:
     - target: {fileID: 3877287903524426519, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       propertyPath: m_Name
       value: Managers
-      objectReference: {fileID: 0}
-    - target: {fileID: 7994927855514247571, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: <TargetState>k__BackingField
-      value: 
-      objectReference: {fileID: 309209733}
-    - target: {fileID: 8380679826154836120, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-      propertyPath: levelsData.Array.size
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
