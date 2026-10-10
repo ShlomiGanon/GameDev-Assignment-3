@@ -1,12 +1,19 @@
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.UI;
+using System;
+using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject pauseMenuPanel;
 
-    private void Awake()
+    [SerializeField] Button continueButton;
+    [SerializeField] Button restartButton;
+    [SerializeField] Button backToMenuButton;
+    string menuSceneName = "MainMenu";
+
+    private void OnMenuClicked()
     {
-        GameStateEvents.StateUpdated += OnStateUpdated;
         HideMenu();
         SceneManager.LoadScene(menuSceneName);
     }
@@ -38,12 +45,16 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnStateUpdated(StateSO state)
     {
-        pausePanel.SetActive(state.ShowPauseMenu);
+        if (state.ShowMenu)
+        {
+            ShowMenu();
+        }
+        else
+        {
+            HideMenu();
+        }
     }
 
-    private void OnDestroy()
-    {
-        GameStateEvents.StateUpdated -= OnStateUpdated;
     private void OnEnable()
     {
         GameStateEvents.StateUpdated += OnStateUpdated;
@@ -55,8 +66,8 @@ public class PauseMenuController : MonoBehaviour
     private void OnDisable()
     {
         GameStateEvents.StateUpdated -= OnStateUpdated;
-        if(continueButton != null) continueButton.onClick.RemoveListener(OnContinueClicked);
-        if(restartButton != null) restartButton.onClick.RemoveListener(OnRestartClicked);
+        if (continueButton != null) continueButton.onClick.RemoveListener(OnContinueClicked);
+        if (restartButton != null) restartButton.onClick.RemoveListener(OnRestartClicked);
         if (backToMenuButton != null) backToMenuButton.onClick.RemoveListener(OnMenuClicked);
         Time.timeScale = 1f;//to continue if the scene was destroyed
     }
