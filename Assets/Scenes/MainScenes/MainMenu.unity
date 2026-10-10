@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &95047353 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3128087270809136529, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
+  m_PrefabInstance: {fileID: 833948412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79badeb3c12e87f47b83cf4f4cfdb7b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameSucceedState
 --- !u!1 &187838850
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,17 +642,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &675264719 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8059321631952759688, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 833948412}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988e49133084ed44bb823fb71260c407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameState
 --- !u!1 &705929801
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 2376296935557490767, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       propertyPath: <TargetState>k__BackingField
       value: 
-      objectReference: {fileID: 675264719}
+      objectReference: {fileID: 95047353}
     - target: {fileID: 3297393859679677655, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.05975
