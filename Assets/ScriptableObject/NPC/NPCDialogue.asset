@@ -15,7 +15,21 @@ MonoBehaviour:
   npcName: Little Square
   npcPortrait: {fileID: 21300004, guid: b08e570699f1c8a4f9cc388204aef3bc, type: 3}
   dialogueLines:
-  - Hello there Circle boy!
-  - I may need your help to solve things...
+  - 'Hi, another traveler seeking a way forward...
+
+    The door ahead is sealed,
+    but the answer lies before your eyes.'
+  - Listen carefully, and you may find your way through.
+  - 'Four buttons stand in a row,
+
+    But only three will let you go.
+
+    Three
+    seek weight to light the way,
+
+    One wears the color of life and spring.
+
+    Choose
+    wisely, and the door shall open.'
   typingSpeed: 0.05
   messageDelay: 2
