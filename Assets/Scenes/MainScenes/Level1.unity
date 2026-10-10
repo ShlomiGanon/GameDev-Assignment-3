@@ -13942,9 +13942,9 @@ MonoBehaviour:
   additionalCompleteEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 674605695}
-        m_TargetAssemblyTypeName: ObjectivesManager, Assembly-CSharp
-        m_MethodName: ReportLevelFailed
+      - m_Target: {fileID: 1338790955}
+        m_TargetAssemblyTypeName: FailedTrigger, Assembly-CSharp
+        m_MethodName: TriggerFailedEvent
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15502,17 +15502,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &674605695 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8169207529064113973, guid: 441186c7dbaac6048b1ae6ab78968f2b, type: 3}
-  m_PrefabInstance: {fileID: 216070878}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0538e41c95dcd8740b6918c63f83e3d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectivesManager
 --- !u!1001 &709202441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16403,6 +16392,50 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1338790954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1338790956}
+  - component: {fileID: 1338790955}
+  m_Layer: 0
+  m_Name: FailedTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1338790955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338790954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b51c8cff01173c49a4de75f0518aced, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FailedTrigger
+--- !u!4 &1338790956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338790954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.50497, y: 4.27055, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1362617926
 GameObject:
   m_ObjectHideFlags: 0
@@ -18158,3 +18191,4 @@ SceneRoots:
   - {fileID: 792317713}
   - {fileID: 709202441}
   - {fileID: 1379030248}
+  - {fileID: 1338790956}
