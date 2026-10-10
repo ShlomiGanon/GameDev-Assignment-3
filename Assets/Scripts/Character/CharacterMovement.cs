@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -6,8 +8,8 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody2D rb2d;
     Vector2 direction = Vector2.zero;
     [SerializeField] CharacterSO data;
-
-    private float minGroundNormalY;
+    [SerializeField] List<string> standableTags;
+    private float minGroundNormalY = 0.5f;
     private bool isGrounded = false;
 
     private void Awake()
@@ -44,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (standableTags.Contains(other.gameObject.tag))
         {
             foreach (ContactPoint2D contact in other.contacts)
             {
