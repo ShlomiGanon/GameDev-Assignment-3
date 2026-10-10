@@ -7,6 +7,12 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private List<LevelSO> levelsData;
     private LevelSO currentLevel;
+    private bool isRestarting = false;
+
+    private void Start()
+    {
+        UpdateCurrentLevel(SceneManager.GetActiveScene());
+    }
 
     private bool HasNextLevel()
     {
@@ -16,7 +22,25 @@ public class LevelManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        UpdateCurrentLevel(scene);
+
+        if (isRestarting)
+        {
+            isRestarting = false;
+            LevelEvents.OnRestartedLevel();
+        }
+    }
+
+    private void UpdateCurrentLevel(Scene scene)
+    {
         currentLevel = levelsData.Find(level => level.SceneName == scene.name);
+    }
+
+    private void RestartLevel()
+    {
+        isRestarting = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("The level is restarted.");
     }
 
     private LevelSO GetNextLevel()
@@ -60,6 +84,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         LevelEvents.loadNextLevel += LoadNextLevel;
         LevelEvents.checkForNextLevel += CheckForNextLevel;
+        LevelEvents.restartLevelEvent += RestartLevel;
     }
 
     private void OnDisable()
@@ -67,5 +92,13 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         LevelEvents.loadNextLevel -= LoadNextLevel;
         LevelEvents.checkForNextLevel -= CheckForNextLevel;
+        LevelEvents.restartLevelEvent -= RestartLevel;
+
+    }
+
+    public void CallOnOnLevelFailed()
+    {
+        Debug.Log("call the event");
+        LevelEvents.OnLevelFailed();
     }
 }

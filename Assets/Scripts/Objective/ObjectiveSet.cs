@@ -4,164 +4,258 @@ using UnityEngine;
 
 public class ObjectiveSet : Objective
 {
-    [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
-    private HashSet<Objective> objectivesNeedToComplete = new();
-    private HashSet<Objective> objectivesCompleted = new();
-    public event Action<Objective> OnObjectiveChanged;
-    public enum TrackMode
+    public enum ObjectiveFilterMode
     {
         All,
-        Mandatory_Only
+        MandatoryOnly,
+        OptionalOnly
     }
-    [SerializeField] private TrackMode trackMode = TrackMode.All;
+
+    [Header("Tracking")]
+    [SerializeField] private List<Objective> objectivesToTrack = new();//for inspector view
+
+    [Header("Filtering")]
+    [SerializeField] private ObjectiveFilterMode filterMode = ObjectiveFilterMode.All;
+
+    private readonly HashSet<Objective> pendingObjectives = new();
+    private readonly HashSet<Objective> completedObjectives = new();
+
+    public event Action<Objective> OnInnerObjectiveChanged;
+    public event Action<ObjectiveSet> OnObjectiveSetChanged;
 
     private void OnEnable()
     {
-        this.CompleteEvent += OnSelfStateChanged;
-        this.UnCompleteEvent += OnSelfStateChanged;
-        InitializeTracker();
+        CompleteEvent += HandleSelfStateChanged;
+        UnCompleteEvent += HandleSelfStateChanged;
+        FailEvent += HandleSelfStateChanged;
+        RebuildTracking();
     }
 
     private void OnDisable()
     {
-        UnRegisterToObjectivesEvents();
-        this.CompleteEvent -= OnSelfStateChanged;
-        this.UnCompleteEvent -= OnSelfStateChanged;
+        UnsubscribeFromTrackedObjectives();
+        CompleteEvent -= HandleSelfStateChanged;
+        UnCompleteEvent -= HandleSelfStateChanged;
+        FailEvent -= HandleSelfStateChanged;
     }
 
-    private void OnSelfStateChanged(Objective objective)
+    public void SetObjectivesList(List<Objective> newObjectives)
     {
-        OnObjectiveChanged?.Invoke(objective);
-    }
-
-    private void RegisterToObjectivesEvents()
-    {
-        foreach (Objective objective in objectivesNeedToComplete)
+        if (!isActiveAndEnabled)
         {
-            objective.CompleteEvent += OnObjectiveStateChanged;
-            objective.UnCompleteEvent += OnObjectiveStateChanged;
+            objectivesToTrack = newObjectives != null ? new List<Objective>(newObjectives) : new List<Objective>();
+            return;
         }
-        foreach (Objective objective in objectivesCompleted)
-        {
-            objective.CompleteEvent += OnObjectiveStateChanged;
-            objective.UnCompleteEvent += OnObjectiveStateChanged;
-        }
+
+        ResetTracking();
+        AddObjectives(newObjectives);
     }
 
-    private void UnRegisterToObjectivesEvents()
+    public void SetTrackMode(ObjectiveFilterMode trackMode)
     {
-        foreach (Objective objective in objectivesNeedToComplete)
-        {
-            objective.CompleteEvent -= OnObjectiveStateChanged;
-            objective.UnCompleteEvent -= OnObjectiveStateChanged;
-        }
-        foreach (Objective objective in objectivesCompleted)
-        {
-            objective.CompleteEvent -= OnObjectiveStateChanged;
-            objective.UnCompleteEvent -= OnObjectiveStateChanged;
-        }
+        filterMode = trackMode;
     }
 
-    public void SetObjectivesList(List<Objective> newObjectivesList)
+    public void AddObjective(Objective objective)
     {
-        objectivesToTrack = newObjectivesList ?? new List<Objective>();
-        if (isActiveAndEnabled) InitializeTracker();
-    }
-
-    public void SetTrackMode(TrackMode trackMode)
-    {
-        this.trackMode = trackMode;
-    }
-
-    private void InitializeTracker()
-    {
-        UnRegisterToObjectivesEvents();
-
-        objectivesNeedToComplete = new();
-        objectivesCompleted = new();
-
-        TransferFromListToHashsets();
-
-        RegisterToObjectivesEvents();
+        TrackObjective(objective);
         CheckAndUpdateCompletionStatus();
     }
 
-    void TransferFromListToHashsets()
+    public void AddObjectives(IEnumerable<Objective> objectives)
     {
-        List<Objective> relevantObjectives = new(objectivesToTrack.Count);
-        foreach (Objective obj in objectivesToTrack)
+        if (objectives == null)
         {
-            if (obj == null || obj == this) continue;
-
-            switch (trackMode)
-            {
-
-                case TrackMode.All:
-                {
-                    relevantObjectives.Add(obj);
-                    if (obj.IsCompleted)
-                    {
-                        objectivesCompleted.Add(obj);
-                    }
-                    else
-                    {
-                        objectivesNeedToComplete.Add(obj);
-                    }
-                    break;
-                }
-
-                case TrackMode.Mandatory_Only:
-                {
-                    if (obj.IsOptional)
-                    {
-                        //ignore optional objectives
-                        continue;
-                    }
-                    else //is madatory
-                    {
-                        relevantObjectives.Add(obj);
-                        if (obj.IsCompleted)
-                        {
-                            objectivesCompleted.Add(obj);
-                        }
-                        else
-                        {
-                            objectivesNeedToComplete.Add(obj);
-                        }
-                    }
-                    break;
-                }
-            }
+            return;
         }
-        objectivesToTrack = relevantObjectives;
-    }
 
-    private void OnObjectiveStateChanged(Objective objective)
-    {
-        if (objective.IsCompleted)
+        foreach (Objective objective in objectives)
         {
-            objectivesNeedToComplete.Remove(objective);
-            objectivesCompleted.Add(objective);
-        }
-        else
-        {
-            objectivesCompleted.Remove(objective);
-            objectivesNeedToComplete.Add(objective);
+            TrackObjective(objective);
         }
 
         CheckAndUpdateCompletionStatus();
-        OnObjectiveChanged?.Invoke(objective);
     }
 
     public void CheckAndUpdateCompletionStatus()
     {
-        bool newStatus = (objectivesNeedToComplete.Count == 0 && (objectivesNeedToComplete.Count + objectivesCompleted.Count) > 0);
+        if (!isActiveAndEnabled)
+        {
+            return;
+        }
+
+        bool isNowCompleted = pendingObjectives.Count == 0 && completedObjectives.Count > 0;
 
         //fire the events only if the status was change.
-        if (newStatus != IsCompleted)
+        if (isNowCompleted == IsCompleted)
         {
-            if (newStatus) SetComplete();
-            else SetUncomplete();
+            return;
         }
+
+        if (isNowCompleted)
+        {
+            SetComplete();
+        }
+        else
+        {
+            SetUncomplete();
+        }
+    }
+
+    public int GetNeedToCompleteCount()
+    {
+        return pendingObjectives.Count;
+    }
+
+    public int GetCompleteCount()
+    {
+        return completedObjectives.Count;
+    }
+
+    private void RebuildTracking()
+    {
+        List<Objective> sourceObjectives = new(objectivesToTrack);
+
+        ResetTracking();
+        AddObjectives(sourceObjectives);
+    }
+
+    private void ResetTracking()
+    {
+        UnsubscribeFromTrackedObjectives();
+
+        pendingObjectives.Clear();
+        completedObjectives.Clear();
+        objectivesToTrack.Clear();
+    }
+
+    private void TrackObjective(Objective objective)
+    {
+        if (objective == null || objective == this)
+        {
+            return;
+        }
+
+        if (!isActiveAndEnabled)
+        {
+            // Filtering and subscribing happen in OnEnable.
+            if (!objectivesToTrack.Contains(objective))
+            {
+                objectivesToTrack.Add(objective);
+            }
+
+            return;
+        }
+
+        if (pendingObjectives.Contains(objective) || completedObjectives.Contains(objective))
+        {
+            return;
+        }
+
+        switch (filterMode)
+        {
+            case ObjectiveFilterMode.All:
+                {
+                    StartTrackingObjective(objective);
+                    break;
+                }
+
+            case ObjectiveFilterMode.MandatoryOnly:
+                {
+                    if (objective.IsOptional)
+                    {
+                        //ignore optional objectives
+                    }
+                    else //is madatory
+                    {
+                        StartTrackingObjective(objective);
+                    }
+
+                    break;
+                }
+
+            case ObjectiveFilterMode.OptionalOnly:
+                {
+                    if (objective.IsOptional)
+                    {
+                        StartTrackingObjective(objective);
+                    }
+                    else //is mandatory
+                    {
+                        //ignore mandatory objectives
+                    }
+
+                    break;
+                }
+        }
+    }
+
+    private void StartTrackingObjective(Objective objective)
+    {
+        objectivesToTrack.Add(objective);
+
+        if (objective.IsCompleted)
+        {
+            completedObjectives.Add(objective);
+        }
+        else
+        {
+            pendingObjectives.Add(objective);
+        }
+
+        SubscribeToObjective(objective);
+    }
+
+    private void UnsubscribeFromTrackedObjectives()
+    {
+        foreach (Objective objective in objectivesToTrack)
+        {
+            if (objective == null)
+            {
+                continue;
+            }
+
+            UnsubscribeFromObjective(objective);
+        }
+    }
+
+    private void SubscribeToObjective(Objective objective)
+    {
+        objective.CompleteEvent += HandleTrackedObjectiveStateChanged;
+        objective.UnCompleteEvent += HandleTrackedObjectiveStateChanged;
+        objective.FailEvent += HandleTrackedObjectiveStateChanged;
+    }
+
+    private void UnsubscribeFromObjective(Objective objective)
+    {
+        objective.CompleteEvent -= HandleTrackedObjectiveStateChanged;
+        objective.UnCompleteEvent -= HandleTrackedObjectiveStateChanged;
+        objective.FailEvent -= HandleTrackedObjectiveStateChanged;
+    }
+
+    private void HandleSelfStateChanged(Objective changedObjective)
+    {
+        OnObjectiveSetChanged?.Invoke(this);
+    }
+
+    private void HandleTrackedObjectiveStateChanged(Objective changedObjective)
+    {
+        if (changedObjective.IsCompleted)
+        {
+            pendingObjectives.Remove(changedObjective);
+            completedObjectives.Add(changedObjective);
+        }
+        else
+        {
+            completedObjectives.Remove(changedObjective);
+            pendingObjectives.Add(changedObjective);
+        }
+        OnInnerObjectiveChanged?.Invoke(changedObjective);
+        if (changedObjective.IsFail)
+        {
+            SetFail();
+            return;
+        }
+        CheckAndUpdateCompletionStatus();
     }
 }
