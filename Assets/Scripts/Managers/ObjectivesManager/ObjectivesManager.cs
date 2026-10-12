@@ -89,7 +89,6 @@ public class ObjectivesManager : MonoBehaviour
         {
             return;
         }
-
         UnsubscribeFromObjectiveSet();
         Destroy(objSet);
         objSet = null;
