@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FailedState
   m_EditorClassIdentifier: Assembly-CSharp::StateSO
   <CanMove>k__BackingField: 1
-  <CanMenu>k__BackingField: 1
   <ShowMenu>k__BackingField: 0
-  <CanOpenFinalGate>k__BackingField: 1
+  <CanOpenFinalGate>k__BackingField: 0
+  <CanDialogue>k__BackingField: 0
