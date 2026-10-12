@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
+  m_Name: Level3Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
+  npcName: Tick Tock
+  npcPortrait: {fileID: 9133988509631934656, guid: 3fb775950fe57c5498a9cef5c71902c5, type: 3}
+  dialogueLines:
+  - "Hurry up! You\u2019ve only got 2 minutes to clear this level, and the clock
+    is already ticking!"
+  - "And watch your step , this place is full of traps. One touch and you\u2019re
+    dead!"
+  typingSpeed: 0.05
+  messageDelay: 2
