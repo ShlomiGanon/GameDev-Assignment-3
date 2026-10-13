@@ -1,7 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using static Unity.Cinemachine.IInputAxisOwner.AxisDescriptor;
 
 public class TimerHUD : MonoBehaviour
 {
@@ -10,13 +8,12 @@ public class TimerHUD : MonoBehaviour
     private Color currentColor;
     [SerializeField] private Color expireColor;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    private void Awake()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
-        if(textMeshPro == null)
+        if (textMeshPro == null)
         {
-            Debug.LogError("cant find any TextMeshProUGUI on this gameObject");
+            Debug.LogError("Can't find any TextMeshProUGUI on this GameObject");
         }
         else
         {
@@ -59,9 +56,11 @@ public class TimerHUD : MonoBehaviour
     private void UpdateTimerText(float secondsLeft)
     {
         if (textMeshPro == null) return;
-        int minuts = (int)(secondsLeft / 60);
-        int seconds = (int)(secondsLeft % 60);
-        textMeshPro.text = $"Timer: {minuts}:{seconds}";
+        textMeshPro.color = currentColor;
+        int totalSeconds = Mathf.CeilToInt(secondsLeft);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        textMeshPro.text = $"Timer: {minutes:D2}:{seconds:D2}";
     }
     private void UpdateTimerTextToExpire()
     {
