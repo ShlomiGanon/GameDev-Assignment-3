@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 314602297}
   - component: {fileID: 314602296}
   m_Layer: 0
-  m_Name: bg_cave_greenish_other_03
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10221,9 +10221,9 @@ MonoBehaviour:
   additionalFailEvent:
     m_PersistentCalls:
       m_Calls: []
-  isStartPositive: 0
+  isStartPositive: 1
   startDelaySeconds: 0
-  flipInSeconds: 120
+  flipInSeconds: 90
   tickIntervalSeconds: 1
   secondsLeft: 0
   additionalTickEvent:
@@ -12319,6 +12319,6 @@ SceneRoots:
   - {fileID: 806403882}
   - {fileID: 259807530}
   - {fileID: 1852046621}
-  - {fileID: 314602297}
   - {fileID: 1041951382}
   - {fileID: 450305197}
+  - {fileID: 314602297}
