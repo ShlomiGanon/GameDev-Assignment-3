@@ -32,12 +32,12 @@ public class ButtonObjective : Objective
         currentFrame = (currentFrame + 1) % skippingFrames;
     }
 
-    private void OnCollisionEnter2D(Collision2D other) => HandleContact(other);
-    private void OnCollisionStay2D(Collision2D other) => HandleContact(other);
+    private void OnTriggerEnter2D(Collider2D other) => HandleContact(other);
+    private void OnTriggerStay2D(Collider2D other) => HandleContact(other);
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        activeColliders.Remove(other.collider);
+        activeColliders.Remove(other);
         UpdateCompleteStatus();
     }
     private void UpdateCompleteStatus()
@@ -54,22 +54,19 @@ public class ButtonObjective : Objective
         }
     }
 
-    private bool IsAllowed(Collision2D other)
+    private bool IsAllowed(Collider2D other)
     {
         if (allowedInteractor == null) return true;
 
-        Transform touchingTransform = other.collider.transform;
+        Transform touchingTransform = other.transform;
         Transform allowedTransform = allowedInteractor.transform;
 
-        bool touchingColliderIsOnTheAllowedObject = touchingTransform == allowedTransform;
-        bool touchingColliderIsOnAChildOfTheAllowedObject = touchingTransform.IsChildOf(allowedTransform);
-
-        return touchingColliderIsOnTheAllowedObject || touchingColliderIsOnAChildOfTheAllowedObject;
+        return touchingTransform.IsChildOf(allowedTransform);
     }
 
-    private void HandleContact(Collision2D other)
+    private void HandleContact(Collider2D other)
     {
-        if (IsAllowed(other)) activeColliders.Add(other.collider);
+        if (IsAllowed(other)) activeColliders.Add(other);
         UpdateCompleteStatus();
     }
 }
