@@ -33898,42 +33898,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1535980708 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440114852849982595, guid: 691efd31d2af09e4e8272b9802196e64, type: 3}
-  m_PrefabInstance: {fileID: 1562929849}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1535980709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1535980708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
-  <IsCompleted>k__BackingField: 0
-  <IsFail>k__BackingField: 0
-  <IsOptional>k__BackingField: 0
-  <FailsPermanentlyOnUncomplete>k__BackingField: 0
-  <TriggerUncompleteOnStart>k__BackingField: 0
-  additionalStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalCompleteEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalUnCompleteEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalFailEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  allowedInteractor: {fileID: 0}
-  skippingFrames: 100
 --- !u!1001 &1562929849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33990,10 +33954,46 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7440114852849982595, guid: 691efd31d2af09e4e8272b9802196e64, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6926100319147416281, guid: 691efd31d2af09e4e8272b9802196e64, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1535980709}
+      addedObject: {fileID: 1562929851}
   m_SourcePrefab: {fileID: 100100000, guid: 691efd31d2af09e4e8272b9802196e64, type: 3}
+--- !u!1 &1562929850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926100319147416281, guid: 691efd31d2af09e4e8272b9802196e64, type: 3}
+  m_PrefabInstance: {fileID: 1562929849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1562929851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562929850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
+  <IsCompleted>k__BackingField: 0
+  <IsFail>k__BackingField: 0
+  <IsOptional>k__BackingField: 0
+  <FailsPermanentlyOnUncomplete>k__BackingField: 0
+  <TriggerUncompleteOnStart>k__BackingField: 0
+  additionalStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalUnCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalFailEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  allowedInteractor: {fileID: 0}
+  skippingFrames: 100
 --- !u!114 &1687090897 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4556223891026815818, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
