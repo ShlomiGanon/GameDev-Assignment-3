@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46a13c4f1df95294286ccd82a5496ff9, type: 3}
-  m_Name: Level3Dialogue
+  m_Name: DarkKnightDialogue
   m_EditorClassIdentifier: Assembly-CSharp::NPCDialogue
-  npcName: Tick Tock
-  npcPortrait: {fileID: 9133988509631934656, guid: 3fb775950fe57c5498a9cef5c71902c5, type: 3}
+  npcName: Dark Knight
+  npcPortrait: {fileID: 21300114, guid: f5f1c19ce87450f4b97f8b363746558d, type: 3}
   dialogueLines:
   - "Hurry up! You\u2019ve only got 90 seconds to complete this level, and the clock
     is already ticking!"
