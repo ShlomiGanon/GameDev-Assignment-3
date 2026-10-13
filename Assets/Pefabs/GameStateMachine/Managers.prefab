@@ -917,6 +917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
   levelsData:
   - {fileID: 11400000, guid: 1284f8557e1da804f9ccaa9473541349, type: 2}
+  - {fileID: 11400000, guid: ff6fdd290b22feb43a95401b38a437d5, type: 2}
+  - {fileID: 11400000, guid: 50374fd8cb013b5448467efc0825136d, type: 2}
 --- !u!1 &6490901583524705409
 GameObject:
   m_ObjectHideFlags: 0
