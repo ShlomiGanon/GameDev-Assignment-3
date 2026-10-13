@@ -211,6 +211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4895144601450966743, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6258218849265264817, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -225,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9060703213654747294, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -263,6 +267,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1688238724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &224618952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
+  m_PrefabInstance: {fileID: 1852046621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &224618956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224618952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
+  <IsCompleted>k__BackingField: 0
+  <IsFail>k__BackingField: 0
+  <IsOptional>k__BackingField: 0
+  <FailsPermanentlyOnUncomplete>k__BackingField: 0
+  <TriggerUncompleteOnStart>k__BackingField: 0
+  additionalStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalUnCompleteEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalFailEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  allowedInteractor: {fileID: 1041951378}
+  skippingFrames: 100
 --- !u!1001 &232612590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,70 +460,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 258742732}
+      addedObject: {fileID: 1527282921}
   m_SourcePrefab: {fileID: 100100000, guid: 315a37352f882134699d4c948df239a9, type: 3}
---- !u!1 &258742731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
-  m_PrefabInstance: {fileID: 258742730}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &258742732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258742731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
-  <IsCompleted>k__BackingField: 0
-  <IsFail>k__BackingField: 0
-  <IsOptional>k__BackingField: 1
-  <FailsPermanentlyOnUncomplete>k__BackingField: 0
-  <TriggerUncompleteOnStart>k__BackingField: 1
-  additionalStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 587142137}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalUnCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 587142137}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: CloseDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalFailEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  allowedInteractor: {fileID: 0}
-  skippingFrames: 100
 --- !u!1001 &259807530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -560,66 +540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!1 &305144095 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
-  m_PrefabInstance: {fileID: 570730811}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &305144096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 305144095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
-  <IsCompleted>k__BackingField: 0
-  <IsFail>k__BackingField: 0
-  <IsOptional>k__BackingField: 1
-  <FailsPermanentlyOnUncomplete>k__BackingField: 0
-  <TriggerUncompleteOnStart>k__BackingField: 1
-  additionalStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1217393361}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalUnCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1217393361}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: CloseDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalFailEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  allowedInteractor: {fileID: 0}
-  skippingFrames: 100
 --- !u!1 &314602295
 GameObject:
   m_ObjectHideFlags: 0
@@ -10143,42 +10063,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &349088364 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
-  m_PrefabInstance: {fileID: 1852046621}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &349088365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349088364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
-  <IsCompleted>k__BackingField: 0
-  <IsFail>k__BackingField: 0
-  <IsOptional>k__BackingField: 0
-  <FailsPermanentlyOnUncomplete>k__BackingField: 0
-  <TriggerUncompleteOnStart>k__BackingField: 0
-  additionalStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalCompleteEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalUnCompleteEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalFailEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  allowedInteractor: {fileID: 1041951378}
-  skippingFrames: 100
 --- !u!1 &353061787
 GameObject:
   m_ObjectHideFlags: 0
@@ -10304,9 +10188,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 894954552}
+      addedObject: {fileID: 745461592}
   m_SourcePrefab: {fileID: 100100000, guid: 315a37352f882134699d4c948df239a9, type: 3}
 --- !u!4 &426983140 stripped
 Transform:
@@ -10620,9 +10504,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 305144096}
+      addedObject: {fileID: 1881071451}
   m_SourcePrefab: {fileID: 100100000, guid: 315a37352f882134699d4c948df239a9, type: 3}
 --- !u!1 &587142135
 GameObject:
@@ -10853,6 +10737,66 @@ Transform:
   - {fileID: 1921563647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &745461588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
+  m_PrefabInstance: {fileID: 416743863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &745461592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745461588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
+  <IsCompleted>k__BackingField: 0
+  <IsFail>k__BackingField: 0
+  <IsOptional>k__BackingField: 1
+  <FailsPermanentlyOnUncomplete>k__BackingField: 0
+  <TriggerUncompleteOnStart>k__BackingField: 1
+  additionalStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1203403418}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalUnCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1203403418}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalFailEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  allowedInteractor: {fileID: 0}
+  skippingFrames: 100
 --- !u!114 &752559741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
@@ -10947,66 +10891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &894954551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
-  m_PrefabInstance: {fileID: 416743863}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &894954552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894954551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
-  <IsCompleted>k__BackingField: 0
-  <IsFail>k__BackingField: 0
-  <IsOptional>k__BackingField: 1
-  <FailsPermanentlyOnUncomplete>k__BackingField: 0
-  <TriggerUncompleteOnStart>k__BackingField: 1
-  additionalStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  additionalCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1203403418}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: OpenDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalUnCompleteEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1203403418}
-        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
-        m_MethodName: CloseDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  additionalFailEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  allowedInteractor: {fileID: 0}
-  skippingFrames: 100
 --- !u!1001 &960509976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11034,7 +10918,7 @@ PrefabInstance:
     - target: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
       propertyPath: dialoguePanel
       value: 
-      objectReference: {fileID: 1928970729}
+      objectReference: {fileID: 1196098691}
     - target: {fileID: 204687107345753707, guid: 031fd25a6aebf7c4e98933c51b57d0d7, type: 3}
       propertyPath: canvasPortraitImage
       value: 
@@ -11438,6 +11322,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &1196098691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4895144601450966743, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
+  m_PrefabInstance: {fileID: 61410619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1203403416
 GameObject:
   m_ObjectHideFlags: 0
@@ -11911,6 +11800,66 @@ Transform:
   - {fileID: 1789020893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1527282917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
+  m_PrefabInstance: {fileID: 258742730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1527282921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527282917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
+  <IsCompleted>k__BackingField: 0
+  <IsFail>k__BackingField: 0
+  <IsOptional>k__BackingField: 1
+  <FailsPermanentlyOnUncomplete>k__BackingField: 0
+  <TriggerUncompleteOnStart>k__BackingField: 1
+  additionalStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 587142137}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalUnCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 587142137}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalFailEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  allowedInteractor: {fileID: 0}
+  skippingFrames: 100
 --- !u!1 &1688238723
 GameObject:
   m_ObjectHideFlags: 0
@@ -12146,10 +12095,70 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7440114852849982595, guid: 315a37352f882134699d4c948df239a9, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 349088365}
+      addedObject: {fileID: 224618956}
   m_SourcePrefab: {fileID: 100100000, guid: 315a37352f882134699d4c948df239a9, type: 3}
+--- !u!1 &1881071447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6926100319147416281, guid: 315a37352f882134699d4c948df239a9, type: 3}
+  m_PrefabInstance: {fileID: 570730811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1881071451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881071447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5477634be5e8b4d8008b995855844d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonObjective
+  <IsCompleted>k__BackingField: 0
+  <IsFail>k__BackingField: 0
+  <IsOptional>k__BackingField: 1
+  <FailsPermanentlyOnUncomplete>k__BackingField: 0
+  <TriggerUncompleteOnStart>k__BackingField: 1
+  additionalStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  additionalCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217393361}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: OpenDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalUnCompleteEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1217393361}
+        m_TargetAssemblyTypeName: NormalDoorSwitch, Assembly-CSharp
+        m_MethodName: CloseDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  additionalFailEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  allowedInteractor: {fileID: 0}
+  skippingFrames: 100
 --- !u!1 &1921563646
 GameObject:
   m_ObjectHideFlags: 0
@@ -22629,11 +22638,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1928970729 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9060703213654747294, guid: 9ce636abf7257c340a1a27d031f7f098, type: 3}
-  m_PrefabInstance: {fileID: 61410619}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2145800594
 GameObject:
   m_ObjectHideFlags: 0
