@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,39 +30,34 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isGrounded)
         {
-            return false; 
+            return false;
         }
         isGrounded = false;
 
         rb2d.AddForceY(data.JumpForce, ForceMode2D.Impulse);
         return true;
     }
+
     private void FixedUpdate()
     {
         rb2d.linearVelocityX = direction.x * data.MoveSpeed;
+        isGrounded = false;
     }
-    
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnCollisionStay2D(Collision2D other)
     {
-        if (standableTags.Contains(other.gameObject.tag))
+        if (!standableTags.Contains(other.gameObject.tag)) return;
+
+        for (int i = 0; i < other.contactCount; i++)
         {
-            foreach (ContactPoint2D contact in other.contacts)
+            if (other.GetContact(i).normal.y > minGroundNormalY)
             {
-                if (contact.normal.y > minGroundNormalY)
-                {
-                    isGrounded = true;
-                    return;
-                }
+                isGrounded = true;
+                return;
             }
         }
     }
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if(other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
+
     public float GetHorizontalVelocity()
     {
         return rb2d.linearVelocityX;
