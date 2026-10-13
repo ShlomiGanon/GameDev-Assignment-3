@@ -8,7 +8,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] CharacterSO data;
     [SerializeField] List<string> standableTags;
     private float minGroundNormalY = 0.5f;
-    private bool isGrounded = false;
+    [SerializeField] private bool isGrounded = false;
+    private readonly List<ContactPoint2D> contacts = new();
 
     private void Awake()
     {
@@ -41,21 +42,23 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb2d.linearVelocityX = direction.x * data.MoveSpeed;
-        isGrounded = false;
+        isGrounded = CheckGrounded();
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private bool CheckGrounded()
     {
-        if (!standableTags.Contains(other.gameObject.tag)) return;
+        rb2d.GetContacts(contacts);
 
-        for (int i = 0; i < other.contactCount; i++)
+        for (int i = 0; i < contacts.Count; i++)
         {
-            if (other.GetContact(i).normal.y > minGroundNormalY)
+            if (contacts[i].normal.y > minGroundNormalY &&
+                standableTags.Contains(contacts[i].collider.tag))
             {
-                isGrounded = true;
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     public float GetHorizontalVelocity()
